@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>AFNetworking.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-First App-First AppTests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-First App.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-First AppUITests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>ReactiveObjC.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SDAutoLayout.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SDWebImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>YYModel.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>2BE229C531A58609C437C6F5FFBAC119</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>68296DB0F3E35E5DCB1A523E4A609AEE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>786B29F2A47BB9B2FD7A71A55F960D2B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B78F1CD036B08C72352ED9C6A2DAD382</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CC4FFB5BD5BBFE1BF46E4D0840130105</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CF671F7E57B92905F1CC91D036D6B4A7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CF6940BF8DD251F313FBAFDDAFDA6127</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D92F9715FA6D5999F5900A1A55B9DA05</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

@@ -7,9 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AFNetworking/AFNetworking.h>
+#import <SDAutoLayout/SDAutoLayout.h>
+#import <ReactiveObjC/ReactiveObjC.h>
+#import <SDWebImage/UIImageView+WebCache.h>
+#import <YYModel/YYModel.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UITableViewController  <UITableViewDelegate, UITableViewDataSource>
 
+@property (nonatomic, assign) NSInteger rowCount;
 
 @end
 
