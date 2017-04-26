@@ -46,6 +46,7 @@
         _summaryLbl = summary;
         [self.contentView sd_addSubviews:@[_imgView, _brandNameLbl, _itemNameLbl, _summaryLbl]];
         
+        //SDAutoLayout Setting
         _imgView.sd_layout
         .widthRatioToView(self.contentView, 0.4)
         .autoHeightRatio(1.0)

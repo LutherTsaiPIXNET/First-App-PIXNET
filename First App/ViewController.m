@@ -42,18 +42,23 @@
     // Dispose of any resources that can be recreated.
 }
 
+/**
+ Call the Function to download data from the API
+ */
 - (void)downloadData {
     
-    NSURL *URL = [NSURL URLWithString:@"https://styleme-app-api.events.pixnet.net/goods/list?type=hot&page=1&per_page=20"];
+    NSURL *url = [NSURL URLWithString:@"https://styleme-app-api.events.pixnet.net/goods/list?type=hot&page=1&per_page=20"];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    [manager GET:URL.absoluteString parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
+    [manager GET:url.absoluteString parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         //NSLog(@"JSON: %@", responseObject);
         _rowCount = [[responseObject objectForKey:@"hot"] count];
         
+        //Abstract JSON to Model
         for (int i = 0; i < _rowCount; i++) {
             Item *item = [Item yy_modelWithJSON:[[responseObject objectForKey:@"hot"] objectAtIndex:i]];
             [_itemArray addObject:item];
         }
+        //Reload Data on Table
         [self.tableView reloadData];
     } failure:^(NSURLSessionTask *operation, NSError *error) {
         NSLog(@"Error: %@", error);
