@@ -29,36 +29,19 @@
     self.tableView.allowsSelection = NO;
     
     //Init Data
-    _itemArray = [[NSMutableArray alloc] init];
-    _currentPage = 1;
-    _pageCount = 1;
-    _rowCount = 0;
+    [self initializeData];
     
     //ASYNCHRONIZE - NETWORK DOWNLOAD JSON
     [self downloadDataWithPage:_currentPage];
     
-    // 下拉刷新
-    self.tableView.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        _itemArray = [[NSMutableArray alloc] init];
-        _rowCount = 0;
-        _currentPage = 1;
-        _pageCount = 1;
-        [self downloadDataWithPage:_currentPage];
-    }];
+    //Set Header Refresh Control
+    [self setTableviewHeaderControl];
     
     // 设置自动切换透明度(在导航栏下面自动隐藏)
     self.tableView.mj_header.automaticallyChangeAlpha = YES;
     
-    // 上拉刷新
-    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-        if (_currentPage < _pageCount) {
-            _currentPage++;
-            [self downloadDataWithPage:_currentPage];
-        } else {
-            [self.tableView.mj_footer endRefreshing];
-        }
-    }];
-
+    //Set Footer Refresh Control
+    [self setTableviewFooterControl];
 
 }
 
@@ -72,9 +55,46 @@
 }
 
 /**
+ 初始化ViewController所需變數與資料
+ */
+- (void)initializeData {
+    _itemArray = [[NSMutableArray alloc] init];
+    _rowCount = 0;
+    _currentPage = 1;
+    _pageCount = 1;
+}
+
+/**
+ 設定下拉刷新控制
+ */
+- (void)setTableviewHeaderControl {
+    // 下拉刷新
+    self.tableView.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self initializeData];
+        [self downloadDataWithPage:_currentPage];
+    }];
+
+}
+
+/**
+ 設定上拉刷新控制
+ */
+- (void)setTableviewFooterControl {
+    // 上拉刷新
+    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        if (_currentPage < _pageCount) {
+            _currentPage++;
+            [self downloadDataWithPage:_currentPage];
+        } else {
+            [self.tableView.mj_footer endRefreshing];
+        }
+    }];
+}
+
+/**
  Call the Function to download data from the API
  */
-- (void)downloadDataWithPage :(NSInteger)page{
+- (void)downloadDataWithPage :(NSInteger)page {
     
     NSString *pageStr = [NSString stringWithFormat:@"%ld", (long)page];
     NSString *urlStr = [[@"https://styleme-app-api.events.pixnet.net/goods/list?type=hot&page=" stringByAppendingString:pageStr] stringByAppendingString:@"&per_page=20"];
@@ -90,11 +110,19 @@
             Item *item = [Item yy_modelWithJSON:[[responseObject objectForKey:@"hot"] objectAtIndex:i]];
             [_itemArray addObject:item];
         }
-        NSLog(@"Current: %ld", _currentPage);
+        
         //Reload Data on Table
         [self.tableView reloadData];
+        //END Refreshing
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshing];
+        
+        //Handle Page Control
+        if (_currentPage == _pageCount) {
+            self.tableView.mj_footer = nil;
+        } else {
+            [self setTableviewFooterControl];
+        }
     } failure:^(NSURLSessionTask *operation, NSError *error) {
         NSLog(@"Error: %@", error);
     }];

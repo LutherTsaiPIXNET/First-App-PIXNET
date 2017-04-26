@@ -13,9 +13,11 @@
         <scene sceneID="GXh-Fy-P5S">
             <objects>
                 <navigationController id="vcT-xk-6S6" sceneMemberID="viewController">
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="c1J-Yc-AfP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="1" green="0.49925611453192897" blue="0.86057963115838287" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="AWV-XM-plZ" kind="relationship" relationship="rootViewController" id="QEg-jR-Ya5"/>
@@ -25,7 +27,7 @@
             </objects>
             <point key="canvasLocation" x="-1481" y="-296"/>
         </scene>
-        <!--FirstApp-->
+        <!--StyleMe-->
         <scene sceneID="vd9-ZP-p9E">
             <objects>
                 <tableViewController id="AWV-XM-plZ" customClass="ViewController" sceneMemberID="viewController">
@@ -48,7 +50,7 @@
                             <outlet property="delegate" destination="AWV-XM-plZ" id="QxL-mS-nQt"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="FirstApp" id="mau-ZW-jnw"/>
+                    <navigationItem key="navigationItem" title="StyleMe" id="mau-ZW-jnw"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zug-GX-aH3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
