@@ -13,12 +13,16 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <YYModel/YYModel.h>
 #import <MJRefresh/MJRefresh.h>
+#import <HMSegmentedControl/HMSegmentedControl.h>
 
-@interface ViewController : UITableViewController  <UITableViewDelegate, UITableViewDataSource>
+
+@interface ViewController : UIViewController  <UITableViewDelegate, UITableViewDataSource>
 
 
 /**Row of Table Data*/
 @property (nonatomic, assign) NSInteger rowCount;
+@property (weak, nonatomic) IBOutlet UIView *tabBarView;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 

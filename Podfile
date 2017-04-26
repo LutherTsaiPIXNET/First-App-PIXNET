@@ -12,6 +12,7 @@ target 'First App' do
   pod 'YYModel'
   pod 'SDAutoLayout'
   pod 'MJRefresh'
+  pod 'HMSegmentedControl'
 
   target 'First AppTests' do
       inherit! :search_paths

@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>HMSegmentedControl.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>MJRefresh.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -52,32 +57,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0B12FE91CBAACF300AD5B3D3A6075B34</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>10D69E42663D6AA55787F01A44C644F3</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>3EF5204D47DBDB3189000C891871D1EB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6EACB1A0F81957F3B8A9545C88651909</key>
+		<key>7891E2B724C54EF58FB1692B34F1455C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>847CD459D4D21ED096B4DB952BEBDA43</key>
+		<key>78D6F4F09B93FC3791D2D22CD3662AAB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9AEF2D11BAB2E1573C852A71FC0AF7C4</key>
+		<key>89C36F2548B9F862F49FA7C15998AF12</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B138D661BF6361375E5ED61469946E05</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -93,6 +93,16 @@
 			<true/>
 		</dict>
 		<key>E14A62900910444707A5504D25EC98DC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F4686837E1AA2D5AC2EAD1FB89AD28C6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F9E3EC9CEB99E662711165DDD790F82E</key>
 		<dict>
 			<key>primary</key>
 			<true/>

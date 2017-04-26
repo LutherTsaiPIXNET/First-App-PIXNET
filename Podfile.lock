@@ -14,6 +14,7 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - HMSegmentedControl (1.5.3)
   - MJRefresh (3.1.12)
   - ReactiveObjC (3.0.0)
   - SDAutoLayout (2.1.8)
@@ -24,6 +25,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
+  - HMSegmentedControl
   - MJRefresh
   - ReactiveObjC
   - SDAutoLayout
@@ -32,12 +34,13 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  HMSegmentedControl: 7c6145afb50f26cec5f3243082f6f12b9f41318f
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   ReactiveObjC: ce79989e8684b9086b5f8d0c74bc7b81a8729c9e
   SDAutoLayout: 5a4b48d6b8a5172ae8d088d2879e40dd795e6251
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: 2245d72c28f87b149b6a09f316e09ce3f1712a02
+PODFILE CHECKSUM: 92ad8b25bd1202935ce39c7bbd8fc0cea257af64
 
 COCOAPODS: 1.2.1

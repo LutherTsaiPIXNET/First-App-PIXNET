@@ -10,7 +10,7 @@
 #import "TESTTableViewCell.h"
 #import "Item.h"
 #import "UITableView+SDAutoTableViewCellHeight.h"
-
+#import "UIView+SDAutoLayout.h"
 
 @interface ViewController ()
 
@@ -21,37 +21,77 @@
     NSMutableArray *_itemArray;
     NSInteger _pageCount;
     NSInteger _currentPage;
+    NSString *_currentType;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _rowCount = (long)0;
-    self.tableView.allowsSelection = NO;
+    
+    //Add Segment Controller
+    [self addSegmentController];
+    
+    _tableView.dataSource = self;
+    _tableView.delegate = self;
+    _tableView.allowsSelection = NO;
+    _tableView.tableHeaderView = nil;
     
     //Init Data
     [self initializeData];
+    _currentType = @"hot";
     
     //ASYNCHRONIZE - NETWORK DOWNLOAD JSON
-    [self downloadDataWithPage:_currentPage];
+    [self downloadDataWithType:_currentType WithPage:_currentPage];
     
     //Set Header Refresh Control
     [self setTableviewHeaderControl];
     
     // 设置自动切换透明度(在导航栏下面自动隐藏)
-    self.tableView.mj_header.automaticallyChangeAlpha = YES;
+    _tableView.mj_header.automaticallyChangeAlpha = YES;
     
     //Set Footer Refresh Control
     [self setTableviewFooterControl];
-
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [self.tableView reloadData];
+    [_tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+/**
+ Add Segment Controller with HMSegmentedControll
+ */
+- (void)addSegmentController {
+    CGFloat viewWidth = CGRectGetWidth(self.view.frame);
+
+    HMSegmentedControl *segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"熱門商品", @"最新商品"]];
+    segmentedControl.frame = CGRectMake(0, 0, viewWidth, 60);
+    [segmentedControl addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
+    [_tabBarView addSubview:segmentedControl];
+}
+
+- (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl {
+    NSLog(@"Selected index %ld (via UIControlEventValueChanged)", (long)segmentedControl.selectedSegmentIndex);
+    switch (segmentedControl.selectedSegmentIndex) {
+        case 0:
+            _currentType = @"hot";
+            break;
+        case 1:
+            _currentType = @"latest";
+            break;
+        default:
+            _currentType = @"hot";
+            break;
+    }
+    [self initializeData];
+    [self downloadDataWithType:_currentType WithPage:_currentPage];
+}
+
+- (void)uisegmentedControlChangedValue:(UISegmentedControl *)segmentedControl {
+    NSLog(@"Selected index %ld", (long)segmentedControl.selectedSegmentIndex);
 }
 
 /**
@@ -69,9 +109,9 @@
  */
 - (void)setTableviewHeaderControl {
     // 下拉刷新
-    self.tableView.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    _tableView.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self initializeData];
-        [self downloadDataWithPage:_currentPage];
+        [self downloadDataWithType:_currentType WithPage:_currentPage];
     }];
 
 }
@@ -81,12 +121,12 @@
  */
 - (void)setTableviewFooterControl {
     // 上拉刷新
-    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+    _tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         if (_currentPage < _pageCount) {
             _currentPage++;
-            [self downloadDataWithPage:_currentPage];
+            [self downloadDataWithType:_currentType WithPage:_currentPage];
         } else {
-            [self.tableView.mj_footer endRefreshing];
+            [_tableView.mj_footer endRefreshing];
         }
     }];
 }
@@ -94,32 +134,34 @@
 /**
  Call the Function to download data from the API
  */
-- (void)downloadDataWithPage :(NSInteger)page {
-    
-    NSString *pageStr = [NSString stringWithFormat:@"%ld", (long)page];
-    NSString *urlStr = [[@"https://styleme-app-api.events.pixnet.net/goods/list?type=hot&page=" stringByAppendingString:pageStr] stringByAppendingString:@"&per_page=20"];
+- (void)downloadDataWithType :(NSString *)type WithPage :(NSInteger)page {
+    NSString *baseAPI = @"https://styleme-app-api.events.pixnet.net/goods/list?";
+    NSString *typeStr = [NSString stringWithFormat:@"type=%@&", type];
+    NSString *pageStr = [NSString stringWithFormat:@"page=%ld&", (long)page];
+    NSString *amountStr = [NSString stringWithFormat:@"per_page=%d&", 20];
+    NSString *urlStr = [[[baseAPI stringByAppendingString:typeStr] stringByAppendingString:pageStr] stringByAppendingString:amountStr];
     NSURL *url = [NSURL URLWithString:urlStr];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     [manager GET:url.absoluteString parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         //NSLog(@"JSON: %@", responseObject);
-        NSInteger pageItemCount = [[responseObject objectForKey:@"hot"] count];
+        NSInteger pageItemCount = [[responseObject objectForKey:type] count];
         _rowCount += pageItemCount;
         _pageCount = [[responseObject objectForKey:@"total_page"] integerValue];
         //Abstract JSON to Model
         for (int i = 0; i < pageItemCount; i++) {
-            Item *item = [Item yy_modelWithJSON:[[responseObject objectForKey:@"hot"] objectAtIndex:i]];
+            Item *item = [Item yy_modelWithJSON:[[responseObject objectForKey:type] objectAtIndex:i]];
             [_itemArray addObject:item];
         }
         
         //Reload Data on Table
-        [self.tableView reloadData];
+        [_tableView reloadData];
         //END Refreshing
-        [self.tableView.mj_header endRefreshing];
-        [self.tableView.mj_footer endRefreshing];
+        [_tableView.mj_header endRefreshing];
+        [_tableView.mj_footer endRefreshing];
         
         //Handle Page Control
         if (_currentPage == _pageCount) {
-            self.tableView.mj_footer = nil;
+            _tableView.mj_footer = nil;
         } else {
             [self setTableviewFooterControl];
         }
@@ -150,9 +192,8 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    // >>>>>>>>>>>>>>>>>>>>> * cell自适应步骤2 * >>>>>>>>>>>>>>>>>>>>>>>>
-    /* model 为模型实例， keyPath 为 model 的属性名，通过 kvc 统一赋值接口 */
-    return [self cellHeightForIndexPath:indexPath cellContentViewWidth:[UIScreen mainScreen].bounds.size.width];
+    UITableViewCell *cell = [self tableView:_tableView cellForRowAtIndexPath:indexPath];
+    return cell.frame.size.width;
 }
 
 - (CGFloat)cellContentViewWith {

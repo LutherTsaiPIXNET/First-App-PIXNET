@@ -41,7 +41,7 @@
         _itemNameLbl = itemName;
         
         UILabel *summary = [UILabel new];
-        summary.numberOfLines = 3;
+        //summary.numberOfLines = 3;
         [summary setFont:[UIFont systemFontOfSize:12]];
         _summaryLbl = summary;
         [self.contentView sd_addSubviews:@[_imgView, _brandNameLbl, _itemNameLbl, _summaryLbl]];
@@ -68,7 +68,8 @@
         _summaryLbl.sd_layout
         .topSpaceToView(_itemNameLbl, 10)
         .rightSpaceToView(self.contentView, 10)
-        .leftSpaceToView(_imgView, 10);
+        .leftSpaceToView(_imgView, 10)
+        .autoHeightRatio(0);
         
         //***********************高度自适应cell设置步骤************************
         
