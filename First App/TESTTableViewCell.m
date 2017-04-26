@@ -21,8 +21,7 @@
     UILabel *_summaryLbl;
 }
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
         UIImageView *imgView = [UIImageView new];
@@ -30,9 +29,15 @@
         _imgView = imgView;
         
         UILabel *brandName = [UILabel new];
+        brandName.numberOfLines = 1;
+        brandName.minimumScaleFactor = 0.2;
+        brandName.adjustsFontSizeToFitWidth = YES;
         _brandNameLbl = brandName;
         
         UILabel *itemName = [UILabel new];
+        itemName.numberOfLines = 1;
+        itemName.minimumScaleFactor = 0.2;
+        itemName.adjustsFontSizeToFitWidth = YES;
         _itemNameLbl = itemName;
         
         UILabel *summary = [UILabel new];
@@ -72,27 +77,23 @@
     return self;
 }
 
-- (void)setImgLink:(NSString *)ImgLink
-{
-    _ImgLink = ImgLink;
+- (void)setImgLink:(NSString *)imgLink {
+    _imgLink = imgLink;
     
-    [_imgView sd_setImageWithURL:[NSURL URLWithString:_ImgLink]];
+    [_imgView sd_setImageWithURL:[NSURL URLWithString:_imgLink]];
 }
 
-- (void)setName:(NSString *)name
-{
+- (void)setName:(NSString *)name {
     _name = name;
     _itemNameLbl.text = name;
 }
 
-- (void)setBrand:(NSString *)brand
-{
+- (void)setBrand:(NSString *)brand {
     _brand = brand;
     _brandNameLbl.text = brand;
 }
 
-- (void)setSummary:(NSString *)summary
-{
+- (void)setSummary:(NSString *)summary {
     _summary = summary;
     _summaryLbl.text = summary;
 }

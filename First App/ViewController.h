@@ -15,6 +15,8 @@
 
 @interface ViewController : UITableViewController  <UITableViewDelegate, UITableViewDataSource>
 
+
+/**Row of Table Data*/
 @property (nonatomic, assign) NSInteger rowCount;
 
 @end

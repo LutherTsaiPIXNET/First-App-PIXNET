@@ -25,6 +25,7 @@
     _rowCount = (long)0;
     self.tableView.allowsSelection = NO;
     
+    //Init Data
     _itemArray = [[NSMutableArray alloc] init];
     
     //ASYNCHRONIZE - NETWORK DOWNLOAD JSON
@@ -60,20 +61,18 @@
     
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return _rowCount;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     Item *object = [_itemArray objectAtIndex:indexPath.row];
-    NSString *ID = object.item_ID;
+    NSString *ID = object.itemID;
     TESTTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     if (!cell) {
         cell = [[TESTTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
         if(_rowCount != 0) {
-            cell.ImgLink = object.thumb_url;
+            cell.imgLink = object.thumb_url;
             cell.brand = object.brand;
             cell.name = object.name;
             cell.summary = object.summary;
@@ -82,8 +81,7 @@
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     // >>>>>>>>>>>>>>>>>>>>> * cell自适应步骤2 * >>>>>>>>>>>>>>>>>>>>>>>>
     /* model 为模型实例， keyPath 为 model 的属性名，通过 kvc 统一赋值接口 */
     return [self cellHeightForIndexPath:indexPath cellContentViewWidth:[UIScreen mainScreen].bounds.size.width];

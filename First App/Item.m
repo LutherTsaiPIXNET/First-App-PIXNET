@@ -11,7 +11,7 @@
 @implementation Item
 
 + (NSDictionary *)modelCustomPropertyMapper {
-    return @{@"item_ID" : @"id",
+    return @{@"itemID" : @"id",
              @"name" : @"name",
              @"brand" : @"brand",
              @"summary" : @"summary",
