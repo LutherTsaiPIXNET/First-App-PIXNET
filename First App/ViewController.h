@@ -12,6 +12,7 @@
 #import <ReactiveObjC/ReactiveObjC.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <YYModel/YYModel.h>
+#import <MJRefresh/MJRefresh.h>
 
 @interface ViewController : UITableViewController  <UITableViewDelegate, UITableViewDataSource>
 

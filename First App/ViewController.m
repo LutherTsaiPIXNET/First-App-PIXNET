@@ -11,6 +11,7 @@
 #import "Item.h"
 #import "UITableView+SDAutoTableViewCellHeight.h"
 
+
 @interface ViewController ()
 
 @end
@@ -18,6 +19,8 @@
 @implementation ViewController
 {
     NSMutableArray *_itemArray;
+    NSInteger _pageCount;
+    NSInteger _currentPage;
 }
 
 - (void)viewDidLoad {
@@ -27,9 +30,35 @@
     
     //Init Data
     _itemArray = [[NSMutableArray alloc] init];
+    _currentPage = 1;
+    _pageCount = 1;
+    _rowCount = 0;
     
     //ASYNCHRONIZE - NETWORK DOWNLOAD JSON
-    [self downloadData];
+    [self downloadDataWithPage:_currentPage];
+    
+    // 下拉刷新
+    self.tableView.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        _itemArray = [[NSMutableArray alloc] init];
+        _rowCount = 0;
+        _currentPage = 1;
+        _pageCount = 1;
+        [self downloadDataWithPage:_currentPage];
+    }];
+    
+    // 设置自动切换透明度(在导航栏下面自动隐藏)
+    self.tableView.mj_header.automaticallyChangeAlpha = YES;
+    
+    // 上拉刷新
+    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        if (_currentPage < _pageCount) {
+            _currentPage++;
+            [self downloadDataWithPage:_currentPage];
+        } else {
+            [self.tableView.mj_footer endRefreshing];
+        }
+    }];
+
 
 }
 
@@ -45,21 +74,27 @@
 /**
  Call the Function to download data from the API
  */
-- (void)downloadData {
+- (void)downloadDataWithPage :(NSInteger)page{
     
-    NSURL *url = [NSURL URLWithString:@"https://styleme-app-api.events.pixnet.net/goods/list?type=hot&page=1&per_page=20"];
+    NSString *pageStr = [NSString stringWithFormat:@"%ld", (long)page];
+    NSString *urlStr = [[@"https://styleme-app-api.events.pixnet.net/goods/list?type=hot&page=" stringByAppendingString:pageStr] stringByAppendingString:@"&per_page=20"];
+    NSURL *url = [NSURL URLWithString:urlStr];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     [manager GET:url.absoluteString parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         //NSLog(@"JSON: %@", responseObject);
-        _rowCount = [[responseObject objectForKey:@"hot"] count];
-        
+        NSInteger pageItemCount = [[responseObject objectForKey:@"hot"] count];
+        _rowCount += pageItemCount;
+        _pageCount = [[responseObject objectForKey:@"total_page"] integerValue];
         //Abstract JSON to Model
-        for (int i = 0; i < _rowCount; i++) {
+        for (int i = 0; i < pageItemCount; i++) {
             Item *item = [Item yy_modelWithJSON:[[responseObject objectForKey:@"hot"] objectAtIndex:i]];
             [_itemArray addObject:item];
         }
+        NSLog(@"Current: %ld", _currentPage);
         //Reload Data on Table
         [self.tableView reloadData];
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
     } failure:^(NSURLSessionTask *operation, NSError *error) {
         NSLog(@"Error: %@", error);
     }];
@@ -92,8 +127,7 @@
     return [self cellHeightForIndexPath:indexPath cellContentViewWidth:[UIScreen mainScreen].bounds.size.width];
 }
 
-- (CGFloat)cellContentViewWith
-{
+- (CGFloat)cellContentViewWith {
     CGFloat width = [UIScreen mainScreen].bounds.size.width;
     
     // 适配ios7横屏

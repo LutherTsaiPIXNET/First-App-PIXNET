@@ -11,9 +11,10 @@ target 'First App' do
   pod 'ReactiveObjC'
   pod 'YYModel'
   pod 'SDAutoLayout'
+  pod 'MJRefresh'
 
   target 'First AppTests' do
-  inherit! :search_paths
+      inherit! :search_paths
   end
 
   target 'First AppUITests' do
