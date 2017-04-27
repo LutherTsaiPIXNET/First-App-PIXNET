@@ -1,12 +1,12 @@
 //
-//  TESTTableViewCell.m
+//  ItemTableViewCell.m
 //  First App
 //
 //  Created by luthertsai on 2017/4/25.
 //  Copyright © 2017年 luthertsai. All rights reserved.
 //
 
-#import "TESTTableViewCell.h"
+#import "ItemTableViewCell.h"
 
 #import "UIView+SDAutoLayout.h"
 #import "UITableView+SDAutoTableViewCellHeight.h"
@@ -14,7 +14,7 @@
 
 #define MARGIN 10.0
 
-@implementation TESTTableViewCell
+@implementation ItemTableViewCell
 {
     UIImageView *_imgView;
     UILabel *_brandNameLbl;

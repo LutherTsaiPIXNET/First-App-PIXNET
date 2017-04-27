@@ -17,7 +17,7 @@
 		710249481EADEABF00B872B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 710249461EADEABF00B872B8 /* LaunchScreen.storyboard */; };
 		710249531EADEABF00B872B8 /* First_AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 710249521EADEABF00B872B8 /* First_AppTests.m */; };
 		7102495E1EADEABF00B872B8 /* First_AppUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7102495D1EADEABF00B872B8 /* First_AppUITests.m */; };
-		7154106B1EAEDC9A001D95B1 /* TESTTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7154106A1EAEDC9A001D95B1 /* TESTTableViewCell.m */; };
+		7154106B1EAEDC9A001D95B1 /* ItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7154106A1EAEDC9A001D95B1 /* ItemTableViewCell.m */; };
 		71AAA7341EAEFBB20054933D /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 71AAA7331EAEFBB20054933D /* Item.m */; };
 		A671C8DE7169B4A38D41F6AF /* Pods_First_AppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBC7CCCA44C7B94AE3E27598 /* Pods_First_AppUITests.framework */; };
 		BA5B32A07B9B7F593A15D1EE /* Pods_First_App_First_AppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C37D28D193272A41C7730F0B /* Pods_First_App_First_AppTests.framework */; };
@@ -61,8 +61,8 @@
 		710249591EADEABF00B872B8 /* First AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "First AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7102495D1EADEABF00B872B8 /* First_AppUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = First_AppUITests.m; sourceTree = "<group>"; };
 		7102495F1EADEABF00B872B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		715410691EAEDC9A001D95B1 /* TESTTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = TESTTableViewCell.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		7154106A1EAEDC9A001D95B1 /* TESTTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = TESTTableViewCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		715410691EAEDC9A001D95B1 /* ItemTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ItemTableViewCell.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		7154106A1EAEDC9A001D95B1 /* ItemTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ItemTableViewCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		7154106C1EAEEF25001D95B1 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		71AAA7321EAEFBB20054933D /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
 		71AAA7331EAEFBB20054933D /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
@@ -142,6 +142,8 @@
 		710249371EADEABE00B872B8 /* First App */ = {
 			isa = PBXGroup;
 			children = (
+				71D94F331EB1CE5900FEA6B4 /* ItemModel */,
+				71D94F321EB1CDED00FEA6B4 /* ItemTableViewCell */,
 				7102493B1EADEABE00B872B8 /* AppDelegate.h */,
 				7102493C1EADEABE00B872B8 /* AppDelegate.m */,
 				7102493E1EADEABE00B872B8 /* ViewController.h */,
@@ -151,10 +153,6 @@
 				710249461EADEABF00B872B8 /* LaunchScreen.storyboard */,
 				710249491EADEABF00B872B8 /* Info.plist */,
 				710249381EADEABE00B872B8 /* Supporting Files */,
-				715410691EAEDC9A001D95B1 /* TESTTableViewCell.h */,
-				7154106A1EAEDC9A001D95B1 /* TESTTableViewCell.m */,
-				71AAA7321EAEFBB20054933D /* Item.h */,
-				71AAA7331EAEFBB20054933D /* Item.m */,
 			);
 			path = "First App";
 			sourceTree = "<group>";
@@ -183,6 +181,24 @@
 				7102495F1EADEABF00B872B8 /* Info.plist */,
 			);
 			path = "First AppUITests";
+			sourceTree = "<group>";
+		};
+		71D94F321EB1CDED00FEA6B4 /* ItemTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				715410691EAEDC9A001D95B1 /* ItemTableViewCell.h */,
+				7154106A1EAEDC9A001D95B1 /* ItemTableViewCell.m */,
+			);
+			name = ItemTableViewCell;
+			sourceTree = "<group>";
+		};
+		71D94F331EB1CE5900FEA6B4 /* ItemModel */ = {
+			isa = PBXGroup;
+			children = (
+				71AAA7321EAEFBB20054933D /* Item.h */,
+				71AAA7331EAEFBB20054933D /* Item.m */,
+			);
+			name = ItemModel;
 			sourceTree = "<group>";
 		};
 		D9891687CD9C7F06D636BBE9 /* Pods */ = {
@@ -482,7 +498,7 @@
 			files = (
 				71AAA7341EAEFBB20054933D /* Item.m in Sources */,
 				710249401EADEABE00B872B8 /* ViewController.m in Sources */,
-				7154106B1EAEDC9A001D95B1 /* TESTTableViewCell.m in Sources */,
+				7154106B1EAEDC9A001D95B1 /* ItemTableViewCell.m in Sources */,
 				7102493D1EADEABE00B872B8 /* AppDelegate.m in Sources */,
 				7102493A1EADEABE00B872B8 /* main.m in Sources */,
 			);

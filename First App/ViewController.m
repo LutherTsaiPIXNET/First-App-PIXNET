@@ -7,12 +7,19 @@
 //
 
 #import "ViewController.h"
-#import "TESTTableViewCell.h"
+#import "ItemTableViewCell.h"
 #import "Item.h"
 #import "UITableView+SDAutoTableViewCellHeight.h"
 #import "UIView+SDAutoLayout.h"
 
+typedef NS_ENUM(NSInteger, CategoryType) {
+    HotType,
+    LatestType,
+};
+
 @interface ViewController ()
+
+@property (nonatomic, assign) CategoryType categoryType;
 
 @end
 
@@ -46,12 +53,12 @@
     _tableView02.hidden = YES;
     
     //Init Data
-    [self initializeDataWithType:@"hot"];
-    [self initializeDataWithType:@"latest"];
+    [self initializeDataWithType:HotType];
+    [self initializeDataWithType:LatestType];
     
     //ASYNCHRONIZE - NETWORK DOWNLOAD JSON
-    [self downloadDataWithType:@"hot" WithPage:_currentPageHot];
-    [self downloadDataWithType:@"latest" WithPage:_currentPageLatest];
+    [self downloadDataWithType:HotType WithPage:_currentPageHot];
+    [self downloadDataWithType:LatestType WithPage:_currentPageLatest];
     
     //Set Header Refresh Control
     [self setTableviewHeaderControl];
@@ -61,8 +68,8 @@
     _tableView02.mj_header.automaticallyChangeAlpha = YES;
     
     //Set Footer Refresh Control
-    [self setTableviewFooterControlWithType:@"hot"];
-    [self setTableviewFooterControlWithType:@"latest"];
+    [self setTableviewFooterControlWithType:HotType];
+    [self setTableviewFooterControlWithType:LatestType];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -106,13 +113,14 @@
 /**
  初始化所需變數與資料
  */
-- (void)initializeDataWithType:(NSString *)type {
-    if ([type isEqualToString:@"hot"]) {
+- (void)initializeDataWithType:(CategoryType)type {
+    
+    if (type == HotType) {
         _itemArrayHot = [[NSMutableArray alloc] init];
         _rowCountHot = 0;
         _currentPageHot = 1;
         _pageCountHot = 1;
-    } else if ([type isEqualToString:@"latest"]){
+    } else if (type == LatestType){
         _itemArrayLatest = [[NSMutableArray alloc] init];
         _rowCountLatest = 0;
         _currentPageLatest = 1;
@@ -126,13 +134,13 @@
 - (void)setTableviewHeaderControl {
     // 下拉刷新
     _tableView01.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [self initializeDataWithType:@"hot"];
-        [self downloadDataWithType:@"hot" WithPage:_currentPageHot];
+        [self initializeDataWithType:HotType];
+        [self downloadDataWithType:HotType WithPage:_currentPageHot];
     }];
     
     _tableView02.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [self initializeDataWithType:@"latest"];
-        [self downloadDataWithType:@"latest" WithPage:_currentPageLatest];
+        [self initializeDataWithType:LatestType];
+        [self downloadDataWithType:LatestType WithPage:_currentPageLatest];
     }];
 
 }
@@ -140,9 +148,9 @@
 /**
  設定上拉刷新控制
  */
-- (void)setTableviewFooterControlWithType:(NSString *)type {
+- (void)setTableviewFooterControlWithType:(CategoryType)type {
     // 上拉刷新
-    if([type isEqualToString:@"hot"]) {
+    if(type == HotType) {
         _tableView01.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
             if (_currentPageHot < _pageCountHot) {
                 _currentPageHot++;
@@ -151,7 +159,7 @@
                 [_tableView01.mj_footer endRefreshing];
             }
         }];
-    } else if ([type isEqualToString:@"latest"]) {
+    } else if (type == LatestType) {
         _tableView02.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
             if (_currentPageLatest < _pageCountLatest) {
                 _currentPageLatest++;
@@ -163,13 +171,27 @@
     }
 }
 
+- (NSString *)getStringWithType:(CategoryType)type {
+    switch (type) {
+        case HotType:
+            return @"hot";
+            break;
+        case LatestType:
+            return @"latest";
+            break;
+        default:
+            return @"";
+            break;
+    }
+}
+
 /**
  Call the Function to download data from the API
  */
-- (void)downloadDataWithType :(NSString *)type WithPage :(NSInteger)page {
+- (void)downloadDataWithType :(CategoryType)type WithPage :(NSInteger)page {
     //Initilize API URL
     NSString *baseAPI = @"https://styleme-app-api.events.pixnet.net/goods/list?";
-    NSString *typeStr = [NSString stringWithFormat:@"type=%@&", type];
+    NSString *typeStr = [NSString stringWithFormat:@"type=%@&", [self getStringWithType:type]];
     NSString *pageStr = [NSString stringWithFormat:@"page=%ld&", (long)page];
     NSString *amountStr = [NSString stringWithFormat:@"per_page=%d&", 20];
     NSString *urlStr = [[[baseAPI stringByAppendingString:typeStr] stringByAppendingString:pageStr] stringByAppendingString:amountStr];
@@ -179,14 +201,14 @@
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     [manager GET:url.absoluteString parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         
-        NSInteger pageItemCount = [[responseObject objectForKey:type] count];
+        NSInteger pageItemCount = [[responseObject objectForKey:[self getStringWithType:type]] count];
         
-        if ([type isEqualToString:@"hot"]) {
+        if (type == HotType) {
             _rowCountHot += pageItemCount;
             _pageCountHot = [[responseObject objectForKey:@"total_page"] integerValue];
             //Abstract JSON to Model
             for (int i = 0; i < pageItemCount; i++) {
-                Item *item = [Item yy_modelWithJSON:[[responseObject objectForKey:type] objectAtIndex:i]];
+                Item *item = [Item yy_modelWithJSON:[[responseObject objectForKey:[self getStringWithType:type]] objectAtIndex:i]];
                 [_itemArrayHot addObject:item];
             }
             
@@ -203,12 +225,12 @@
             } else {
                 [self setTableviewFooterControlWithType:type];
             }
-        } else if ([type isEqualToString:@"latest"]) {
+        } else if (type == LatestType) {
             _rowCountLatest += pageItemCount;
             _pageCountLatest = [[responseObject objectForKey:@"total_page"] integerValue];
             //Abstract JSON to Model
             for (int i = 0; i < pageItemCount; i++) {
-                Item *item = [Item yy_modelWithJSON:[[responseObject objectForKey:type] objectAtIndex:i]];
+                Item *item = [Item yy_modelWithJSON:[[responseObject objectForKey:[self getStringWithType:type]] objectAtIndex:i]];
                 [_itemArrayLatest addObject:item];
             }
             
@@ -260,9 +282,9 @@
             break;
     }
     NSString *ID = object.itemID;
-    TESTTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+    ItemTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     if (!cell) {
-        cell = [[TESTTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+        cell = [[ItemTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
     }
     cell.model = object;
     
@@ -274,12 +296,12 @@
     if (tableView.tag == 0) {
         id model = _itemArrayHot[indexPath.row];
         // 获取cell高度
-        CGFloat height = [_tableView01 cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[TESTTableViewCell class]  contentViewWidth:[self cellContentViewWith]];
+        CGFloat height = [_tableView01 cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[ItemTableViewCell class]  contentViewWidth:[self cellContentViewWith]];
         return height;
     } else if (tableView.tag == 1) {
         id model = _itemArrayLatest[indexPath.row];
         // 获取cell高度
-        return [_tableView02 cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[TESTTableViewCell class]  contentViewWidth:[self cellContentViewWith]];
+        return [_tableView02 cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[ItemTableViewCell class]  contentViewWidth:[self cellContentViewWith]];
     } else {
         return 0;
     }

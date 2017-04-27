@@ -1,5 +1,5 @@
 //
-//  TESTTableViewCell.h
+//  ItemTableViewCell.h
 //  First App
 //
 //  Created by luthertsai on 2017/4/25.
@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Item.h"
 
-@interface TESTTableViewCell : UITableViewCell
+@interface ItemTableViewCell : UITableViewCell
 
 @property (nonatomic, strong) Item *model;
 
