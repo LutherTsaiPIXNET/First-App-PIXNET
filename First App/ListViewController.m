@@ -40,12 +40,12 @@
     
     _tableView01.dataSource = self;
     _tableView01.delegate = self;
-    _tableView01.allowsSelection = NO;
+    _tableView01.allowsSelection = YES;
     _tableView01.tableHeaderView = nil;
     
     _tableView02.dataSource = self;
     _tableView02.delegate = self;
-    _tableView02.allowsSelection = NO;
+    _tableView02.allowsSelection = YES;
     _tableView02.tableHeaderView = nil;
     _tableView02.hidden = YES;
     
@@ -233,6 +233,11 @@
     
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self performSegueWithIdentifier:@"ItemDetailSegue" sender:self];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     switch (tableView.tag) {
@@ -266,6 +271,7 @@
         cell = [[ItemTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
     }
     cell.model = object;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
 }

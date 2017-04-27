@@ -12,11 +12,17 @@
 
 + (NSDictionary *)modelCustomPropertyMapper {
     return @{@"itemID" : @"id",
+             @"thumb_url" : @"thumb",
              @"name" : @"name",
              @"brand" : @"brand",
+             @"price" : @"price",
              @"summary" : @"summary",
-             @"thumb_url" : @"thumb",
-             @"price" : @"price"};
+             @"isCollected" : @"is_collected",
+             @"collectors" : @"collectors",
+             @"moreArticleCount" : @"more_article_count",
+             @"ratingOverview" : @"rating.overview",
+             @"ratingPersonalize" : @"rating.personalize",
+             @"ratingMy" : @"rating.my",};
 }
 
 @end

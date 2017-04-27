@@ -18,6 +18,8 @@
 		710249531EADEABF00B872B8 /* First_AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 710249521EADEABF00B872B8 /* First_AppTests.m */; };
 		7102495E1EADEABF00B872B8 /* First_AppUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7102495D1EADEABF00B872B8 /* First_AppUITests.m */; };
 		7154106B1EAEDC9A001D95B1 /* ItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7154106A1EAEDC9A001D95B1 /* ItemTableViewCell.m */; };
+		7159B2A81EB1D9CC00BE67ED /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7159B2A71EB1D9CC00BE67ED /* DetailViewController.m */; };
+		7159B2AC1EB1E1FD00BE67ED /* ItemDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7159B2AB1EB1E1FD00BE67ED /* ItemDetailTableViewCell.m */; };
 		71AAA7341EAEFBB20054933D /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 71AAA7331EAEFBB20054933D /* Item.m */; };
 		71D94F371EB1CF9E00FEA6B4 /* APIReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D94F361EB1CF9E00FEA6B4 /* APIReference.m */; };
 		A671C8DE7169B4A38D41F6AF /* Pods_First_AppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBC7CCCA44C7B94AE3E27598 /* Pods_First_AppUITests.framework */; };
@@ -65,6 +67,10 @@
 		715410691EAEDC9A001D95B1 /* ItemTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ItemTableViewCell.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		7154106A1EAEDC9A001D95B1 /* ItemTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ItemTableViewCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		7154106C1EAEEF25001D95B1 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		7159B2A61EB1D9CC00BE67ED /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		7159B2A71EB1D9CC00BE67ED /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		7159B2AA1EB1E1FD00BE67ED /* ItemDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemDetailTableViewCell.h; path = DetailTableViewCell/ItemDetailTableViewCell.h; sourceTree = "<group>"; };
+		7159B2AB1EB1E1FD00BE67ED /* ItemDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemDetailTableViewCell.m; path = DetailTableViewCell/ItemDetailTableViewCell.m; sourceTree = "<group>"; };
 		71AAA7321EAEFBB20054933D /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
 		71AAA7331EAEFBB20054933D /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
 		71D94F341EB1CF5400FEA6B4 /* Global.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Global.h; sourceTree = "<group>"; };
@@ -146,6 +152,8 @@
 		710249371EADEABE00B872B8 /* First App */ = {
 			isa = PBXGroup;
 			children = (
+				7159B2A91EB1E19B00BE67ED /* DetailTableViewCell */,
+				7159B2A51EB1D99B00BE67ED /* DetailViewController */,
 				7159B2A41EB1D86400BE67ED /* ListViewController */,
 				71D94F331EB1CE5900FEA6B4 /* ItemModel */,
 				71D94F321EB1CDED00FEA6B4 /* ItemTableViewCell */,
@@ -197,6 +205,24 @@
 			);
 			name = ListViewController;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		7159B2A51EB1D99B00BE67ED /* DetailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7159B2A61EB1D9CC00BE67ED /* DetailViewController.h */,
+				7159B2A71EB1D9CC00BE67ED /* DetailViewController.m */,
+			);
+			name = DetailViewController;
+			sourceTree = "<group>";
+		};
+		7159B2A91EB1E19B00BE67ED /* DetailTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				7159B2AA1EB1E1FD00BE67ED /* ItemDetailTableViewCell.h */,
+				7159B2AB1EB1E1FD00BE67ED /* ItemDetailTableViewCell.m */,
+			);
+			name = DetailTableViewCell;
 			sourceTree = "<group>";
 		};
 		71D94F321EB1CDED00FEA6B4 /* ItemTableViewCell */ = {
@@ -513,11 +539,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				71AAA7341EAEFBB20054933D /* Item.m in Sources */,
+				7159B2AC1EB1E1FD00BE67ED /* ItemDetailTableViewCell.m in Sources */,
 				710249401EADEABE00B872B8 /* ListViewController.m in Sources */,
 				7154106B1EAEDC9A001D95B1 /* ItemTableViewCell.m in Sources */,
 				7102493D1EADEABE00B872B8 /* AppDelegate.m in Sources */,
 				71D94F371EB1CF9E00FEA6B4 /* APIReference.m in Sources */,
 				7102493A1EADEABE00B872B8 /* main.m in Sources */,
+				7159B2A81EB1D9CC00BE67ED /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

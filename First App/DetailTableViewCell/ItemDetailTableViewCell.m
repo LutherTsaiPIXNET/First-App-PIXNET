@@ -1,20 +1,19 @@
 //
-//  ItemTableViewCell.m
+//  ItemDetailTableViewCell.m
 //  First App
 //
-//  Created by luthertsai on 2017/4/25.
+//  Created by luthertsai on 2017/4/27.
 //  Copyright © 2017年 luthertsai. All rights reserved.
 //
 
-#import "ItemTableViewCell.h"
-
+#import "ItemDetailTableViewCell.h"
 #import "UIView+SDAutoLayout.h"
 #import "UITableView+SDAutoTableViewCellHeight.h"
 #import "UIImageView+WebCache.h"
 
 #define MARGIN 10.0
 
-@implementation ItemTableViewCell
+@implementation ItemDetailTableViewCell
 {
     UIImageView *_imgView;
     UILabel *_brandNameLbl;

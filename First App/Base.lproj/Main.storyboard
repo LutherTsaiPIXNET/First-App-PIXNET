@@ -14,10 +14,13 @@
             <objects>
                 <navigationController id="vcT-xk-6S6" sceneMemberID="viewController">
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="c1J-Yc-AfP">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="c1J-Yc-AfP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="1" green="0.49925611453192897" blue="0.86057963115838287" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.125" green="0.125" blue="0.125" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="tzo-wo-u1F" kind="relationship" relationship="rootViewController" id="TXr-dF-UDa"/>
@@ -36,20 +39,20 @@
                         <viewControllerLayoutGuide type="bottom" id="UJr-Ih-tgx"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="33X-DA-S82">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yu6-9k-9N2">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="68" width="375" height="535"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                             <tableView clipsSubviews="YES" tag="1" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="INA-xl-tJs">
-                                <rect key="frame" x="0.0" y="132" width="375" height="535"/>
+                                <rect key="frame" x="0.0" y="68" width="375" height="535"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QHJ-33-iYm">
-                                <rect key="frame" x="0.0" y="64" width="375" height="60"/>
-                                <color key="backgroundColor" red="0.125" green="0.125" blue="0.125" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                                <color key="backgroundColor" white="0.75" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="of3-fK-BuV"/>
                                 </constraints>
@@ -59,7 +62,7 @@
                         <constraints>
                             <constraint firstItem="UJr-Ih-tgx" firstAttribute="top" secondItem="INA-xl-tJs" secondAttribute="bottom" id="7nZ-rY-MC2"/>
                             <constraint firstItem="QHJ-33-iYm" firstAttribute="leading" secondItem="33X-DA-S82" secondAttribute="leading" id="9BR-ag-fUl"/>
-                            <constraint firstItem="yu6-9k-9N2" firstAttribute="top" secondItem="QHJ-33-iYm" secondAttribute="bottom" constant="-60" id="DIn-y7-mDR"/>
+                            <constraint firstItem="yu6-9k-9N2" firstAttribute="top" secondItem="QHJ-33-iYm" secondAttribute="bottom" constant="8" id="DIn-y7-mDR"/>
                             <constraint firstItem="yu6-9k-9N2" firstAttribute="leading" secondItem="33X-DA-S82" secondAttribute="leading" id="MfW-8Y-Ay5"/>
                             <constraint firstAttribute="trailing" secondItem="INA-xl-tJs" secondAttribute="trailing" id="O6V-SG-Anf"/>
                             <constraint firstItem="QHJ-33-iYm" firstAttribute="top" secondItem="X51-pV-Kpb" secondAttribute="bottom" id="PO4-L6-FbJ"/>
@@ -71,15 +74,47 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="StyleMe" id="0eE-mm-dFn"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="tabBarView" destination="QHJ-33-iYm" id="I5T-NU-ixT"/>
                         <outlet property="tableView01" destination="yu6-9k-9N2" id="M8a-bX-Bgf"/>
                         <outlet property="tableView02" destination="INA-xl-tJs" id="5Ev-kP-t1s"/>
+                        <segue destination="Ebu-AR-6f3" kind="show" identifier="ItemDetailSegue" id="aAg-DX-Sbq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ER4-fl-9xi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-650.39999999999998" y="-296.40179910044981"/>
+        </scene>
+        <!--商品資訊-->
+        <scene sceneID="rRR-cv-rDB">
+            <objects>
+                <tableViewController id="Ebu-AR-6f3" customClass="DetailViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ct8-6U-T1Z">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="rDv-fa-8ir">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rDv-fa-8ir" id="JMM-bZ-w4K">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Ebu-AR-6f3" id="N4B-9T-St9"/>
+                            <outlet property="delegate" destination="Ebu-AR-6f3" id="sRe-VC-Tr4"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="商品資訊" id="qx8-Sy-yKR"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ifr-oG-JWz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="95" y="-296"/>
         </scene>
     </scenes>
 </document>
