@@ -12,6 +12,7 @@
 #import "UITableView+SDAutoTableViewCellHeight.h"
 #import "UIImageView+WebCache.h"
 
+#define MARGIN 10.0
 
 @implementation TESTTableViewCell
 {
@@ -48,55 +49,52 @@
         
         //SDAutoLayout Setting
         _imgView.sd_layout
-        .widthRatioToView(self.contentView, 0.4)
+        .widthIs(100)
         .autoHeightRatio(1.0)
-        .topSpaceToView(self.contentView, 10)
-        .leftSpaceToView(self.contentView, 10);
+        .topSpaceToView(self.contentView, MARGIN)
+        .leftSpaceToView(self.contentView, MARGIN);
         
         _brandNameLbl.sd_layout
         .topEqualToView(_imgView)
-        .leftSpaceToView(_imgView, 10)
-        .rightSpaceToView(self.contentView, 10)
+        .leftSpaceToView(_imgView, MARGIN)
+        .rightSpaceToView(self.contentView, MARGIN)
         .heightRatioToView(_imgView, 0.2);
         
         _itemNameLbl.sd_layout
-        .topSpaceToView(_brandNameLbl, 10)
-        .rightSpaceToView(self.contentView, 10)
-        .leftSpaceToView(_imgView, 10)
+        .topSpaceToView(_brandNameLbl, MARGIN)
+        .rightSpaceToView(self.contentView, MARGIN)
+        .leftSpaceToView(_imgView, MARGIN)
         .heightRatioToView(_imgView, 0.2);
         
         _summaryLbl.sd_layout
-        .topSpaceToView(_itemNameLbl, 10)
-        .rightSpaceToView(self.contentView, 10)
-        .leftSpaceToView(_imgView, 10)
+        .topSpaceToView(_itemNameLbl, MARGIN)
+        .rightSpaceToView(self.contentView, MARGIN)
+        .leftSpaceToView(_imgView, MARGIN)
         .autoHeightRatio(0);
-        
-        //***********************高度自适应cell设置步骤************************
-        
-        [self setupAutoHeightWithBottomView:_summaryLbl bottomMargin:10];
-        
     }
     return self;
 }
 
-- (void)setImgLink:(NSString *)imgLink {
-    _imgLink = imgLink;
+- (void)setModel:(Item *)model {
+    _model = model;
+    _itemNameLbl.text = model.name;
+    _brandNameLbl.text = model.brand;
+    _summaryLbl.text = model.summary;
     
-    [_imgView sd_setImageWithURL:[NSURL URLWithString:_imgLink]];
+    [_imgView sd_setImageWithURL:[NSURL URLWithString:model.thumb_url]];
+    
+    _summaryLbl.sd_layout.autoHeightRatio(0);
+    
+    [_summaryLbl updateLayout];
+    [_imgView updateLayout];
+    CGFloat totalHeight = _brandNameLbl.frame.size.height + _itemNameLbl.frame.size.height + _summaryLbl.frame.size.height;
+    if (totalHeight + MARGIN > _imgView.frame.size.height) {
+        //***********************高度自适应cell设置步骤************************
+        [self setupAutoHeightWithBottomView:_summaryLbl bottomMargin:MARGIN];
+    } else {
+        //***********************高度自适应cell设置步骤************************
+        [self setupAutoHeightWithBottomView:_imgView bottomMargin:MARGIN];
+    }
 }
 
-- (void)setName:(NSString *)name {
-    _name = name;
-    _itemNameLbl.text = name;
-}
-
-- (void)setBrand:(NSString *)brand {
-    _brand = brand;
-    _brandNameLbl.text = brand;
-}
-
-- (void)setSummary:(NSString *)summary {
-    _summary = summary;
-    _summaryLbl.text = summary;
-}
 @end

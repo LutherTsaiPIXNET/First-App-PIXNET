@@ -233,6 +233,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
     switch (tableView.tag) {
         case 0:
             return _rowCountHot;
@@ -262,17 +263,26 @@
     TESTTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     if (!cell) {
         cell = [[TESTTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
-        cell.imgLink = object.thumb_url;
-        cell.brand = object.brand;
-        cell.name = object.name;
-        cell.summary = object.summary;
     }
+    cell.model = object;
+    
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
-    return cell.frame.size.width;
+
+    if (tableView.tag == 0) {
+        id model = _itemArrayHot[indexPath.row];
+        // 获取cell高度
+        CGFloat height = [_tableView01 cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[TESTTableViewCell class]  contentViewWidth:[self cellContentViewWith]];
+        return height;
+    } else if (tableView.tag == 1) {
+        id model = _itemArrayLatest[indexPath.row];
+        // 获取cell高度
+        return [_tableView02 cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[TESTTableViewCell class]  contentViewWidth:[self cellContentViewWith]];
+    } else {
+        return 0;
+    }
 }
 
 - (CGFloat)cellContentViewWith {
