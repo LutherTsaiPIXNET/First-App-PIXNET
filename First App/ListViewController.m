@@ -13,6 +13,7 @@
 #import "UIView+SDAutoLayout.h"
 #import "Global.h"
 #import "APIReference.h"
+#import "DetailViewController.h"
 
 @interface ListViewController ()
 
@@ -30,6 +31,7 @@
     NSInteger _pageCountLatest;
     NSInteger _currentPageHot;
     NSInteger _currentPageLatest;
+    Item *_selectedItem;
 }
 
 - (void)viewDidLoad {
@@ -233,8 +235,31 @@
     
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // Make sure your segue name in storyboard is the same as this line
+    if ([[segue identifier] isEqualToString:@"ItemDetailSegue"])
+    {
+        // Get reference to the destination view controller
+        DetailViewController *vc = [segue destinationViewController];
+        [vc setItem:_selectedItem];
+        
+    }
+}
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    switch (tableView.tag) {
+        case 0:
+            _selectedItem = [_itemArrayHot objectAtIndex:indexPath.row];
+            break;
+        case 1:
+            _selectedItem = [_itemArrayLatest objectAtIndex:indexPath.row];
+            break;
+        default:
+            _selectedItem = [Item new];
+            break;
+    }
     [self performSegueWithIdentifier:@"ItemDetailSegue" sender:self];
 }
 

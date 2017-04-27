@@ -18,8 +18,6 @@
 
 @interface ListViewController : UIViewController  <UITableViewDelegate, UITableViewDataSource>
 
-
-
 @property (weak, nonatomic) IBOutlet UIView *tabBarView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView01;
 @property (weak, nonatomic) IBOutlet UITableView *tableView02;
