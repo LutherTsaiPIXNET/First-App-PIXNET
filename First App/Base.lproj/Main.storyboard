@@ -30,7 +30,7 @@
         <!--StyleMe-->
         <scene sceneID="CLU-yd-RLo">
             <objects>
-                <viewController id="tzo-wo-u1F" customClass="ViewController" sceneMemberID="viewController">
+                <viewController id="tzo-wo-u1F" customClass="ListViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="X51-pV-Kpb"/>
                         <viewControllerLayoutGuide type="bottom" id="UJr-Ih-tgx"/>

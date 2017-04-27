@@ -1,29 +1,26 @@
 //
-//  ViewController.m
+//  ListViewController.m
 //  First App
 //
 //  Created by luthertsai on 2017/4/24.
 //  Copyright © 2017年 luthertsai. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "ListViewController.h"
 #import "ItemTableViewCell.h"
 #import "Item.h"
 #import "UITableView+SDAutoTableViewCellHeight.h"
 #import "UIView+SDAutoLayout.h"
+#import "Global.h"
+#import "APIReference.h"
 
-typedef NS_ENUM(NSInteger, CategoryType) {
-    HotType,
-    LatestType,
-};
-
-@interface ViewController ()
+@interface ListViewController ()
 
 @property (nonatomic, assign) CategoryType categoryType;
 
 @end
 
-@implementation ViewController
+@implementation ListViewController
 {
     NSMutableArray *_itemArrayHot;
     NSMutableArray *_itemArrayLatest;
@@ -171,44 +168,26 @@ typedef NS_ENUM(NSInteger, CategoryType) {
     }
 }
 
-- (NSString *)getStringWithType:(CategoryType)type {
-    switch (type) {
-        case HotType:
-            return @"hot";
-            break;
-        case LatestType:
-            return @"latest";
-            break;
-        default:
-            return @"";
-            break;
-    }
-}
-
 /**
  Call the Function to download data from the API
  */
 - (void)downloadDataWithType :(CategoryType)type WithPage :(NSInteger)page {
     //Initilize API URL
-    NSString *baseAPI = @"https://styleme-app-api.events.pixnet.net/goods/list?";
-    NSString *typeStr = [NSString stringWithFormat:@"type=%@&", [self getStringWithType:type]];
-    NSString *pageStr = [NSString stringWithFormat:@"page=%ld&", (long)page];
-    NSString *amountStr = [NSString stringWithFormat:@"per_page=%d&", 20];
-    NSString *urlStr = [[[baseAPI stringByAppendingString:typeStr] stringByAppendingString:pageStr] stringByAppendingString:amountStr];
-    NSURL *url = [NSURL URLWithString:urlStr];
+    
+    NSURL *url = [NSURL URLWithString:[APIReference getJSONDataWithType:type withPage:page]];
     
     //Start Download JSON Here - ASYNCHRONIZE
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     [manager GET:url.absoluteString parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         
-        NSInteger pageItemCount = [[responseObject objectForKey:[self getStringWithType:type]] count];
+        NSInteger pageItemCount = [[responseObject objectForKey:[APIReference getStringWithType:type]] count];
         
         if (type == HotType) {
             _rowCountHot += pageItemCount;
             _pageCountHot = [[responseObject objectForKey:@"total_page"] integerValue];
             //Abstract JSON to Model
             for (int i = 0; i < pageItemCount; i++) {
-                Item *item = [Item yy_modelWithJSON:[[responseObject objectForKey:[self getStringWithType:type]] objectAtIndex:i]];
+                Item *item = [Item yy_modelWithJSON:[[responseObject objectForKey:[APIReference getStringWithType:type]] objectAtIndex:i]];
                 [_itemArrayHot addObject:item];
             }
             
@@ -230,7 +209,7 @@ typedef NS_ENUM(NSInteger, CategoryType) {
             _pageCountLatest = [[responseObject objectForKey:@"total_page"] integerValue];
             //Abstract JSON to Model
             for (int i = 0; i < pageItemCount; i++) {
-                Item *item = [Item yy_modelWithJSON:[[responseObject objectForKey:[self getStringWithType:type]] objectAtIndex:i]];
+                Item *item = [Item yy_modelWithJSON:[[responseObject objectForKey:[APIReference getStringWithType:type]] objectAtIndex:i]];
                 [_itemArrayLatest addObject:item];
             }
             

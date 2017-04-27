@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  ListViewController.h
 //  First App
 //
 //  Created by luthertsai on 2017/4/24.
@@ -16,7 +16,7 @@
 #import <HMSegmentedControl/HMSegmentedControl.h>
 
 
-@interface ViewController : UIViewController  <UITableViewDelegate, UITableViewDataSource>
+@interface ListViewController : UIViewController  <UITableViewDelegate, UITableViewDataSource>
 
 
 
