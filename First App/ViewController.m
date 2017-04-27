@@ -18,10 +18,14 @@
 
 @implementation ViewController
 {
-    NSMutableArray *_itemArray;
-    NSInteger _pageCount;
-    NSInteger _currentPage;
-    NSString *_currentType;
+    NSMutableArray *_itemArrayHot;
+    NSMutableArray *_itemArrayLatest;
+    NSInteger _rowCountHot;
+    NSInteger _rowCountLatest;
+    NSInteger _pageCountHot;
+    NSInteger _pageCountLatest;
+    NSInteger _currentPageHot;
+    NSInteger _currentPageLatest;
 }
 
 - (void)viewDidLoad {
@@ -30,30 +34,35 @@
     //Add Segment Controller
     [self addSegmentController];
     
-    _tableView.dataSource = self;
-    _tableView.delegate = self;
-    _tableView.allowsSelection = NO;
-    _tableView.tableHeaderView = nil;
+    _tableView01.dataSource = self;
+    _tableView01.delegate = self;
+    _tableView01.allowsSelection = NO;
+    _tableView01.tableHeaderView = nil;
+    
+    _tableView02.dataSource = self;
+    _tableView02.delegate = self;
+    _tableView02.allowsSelection = NO;
+    _tableView02.tableHeaderView = nil;
+    _tableView02.hidden = YES;
     
     //Init Data
-    [self initializeData];
-    _currentType = @"hot";
+    [self initializeDataWithType:@"hot"];
+    [self initializeDataWithType:@"latest"];
     
     //ASYNCHRONIZE - NETWORK DOWNLOAD JSON
-    [self downloadDataWithType:_currentType WithPage:_currentPage];
+    [self downloadDataWithType:@"hot" WithPage:_currentPageHot];
+    [self downloadDataWithType:@"latest" WithPage:_currentPageLatest];
     
     //Set Header Refresh Control
     [self setTableviewHeaderControl];
     
     // 设置自动切换透明度(在导航栏下面自动隐藏)
-    _tableView.mj_header.automaticallyChangeAlpha = YES;
+    _tableView01.mj_header.automaticallyChangeAlpha = YES;
+    _tableView02.mj_header.automaticallyChangeAlpha = YES;
     
     //Set Footer Refresh Control
-    [self setTableviewFooterControl];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [_tableView reloadData];
+    [self setTableviewFooterControlWithType:@"hot"];
+    [self setTableviewFooterControlWithType:@"latest"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -66,7 +75,6 @@
  */
 - (void)addSegmentController {
     CGFloat viewWidth = CGRectGetWidth(self.view.frame);
-
     HMSegmentedControl *segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"熱門商品", @"最新商品"]];
     segmentedControl.frame = CGRectMake(0, 0, viewWidth, 60);
     [segmentedControl addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
@@ -74,20 +82,21 @@
 }
 
 - (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl {
-    NSLog(@"Selected index %ld (via UIControlEventValueChanged)", (long)segmentedControl.selectedSegmentIndex);
+    //NSLog(@"Selected index %ld (via UIControlEventValueChanged)", (long)segmentedControl.selectedSegmentIndex);
     switch (segmentedControl.selectedSegmentIndex) {
         case 0:
-            _currentType = @"hot";
+            _tableView01.hidden = NO;
+            _tableView02.hidden = YES;
             break;
         case 1:
-            _currentType = @"latest";
+            _tableView01.hidden = YES;
+            _tableView02.hidden = NO;
             break;
         default:
-            _currentType = @"hot";
+            _tableView01.hidden = NO;
+            _tableView02.hidden = YES;
             break;
     }
-    [self initializeData];
-    [self downloadDataWithType:_currentType WithPage:_currentPage];
 }
 
 - (void)uisegmentedControlChangedValue:(UISegmentedControl *)segmentedControl {
@@ -95,13 +104,20 @@
 }
 
 /**
- 初始化ViewController所需變數與資料
+ 初始化所需變數與資料
  */
-- (void)initializeData {
-    _itemArray = [[NSMutableArray alloc] init];
-    _rowCount = 0;
-    _currentPage = 1;
-    _pageCount = 1;
+- (void)initializeDataWithType:(NSString *)type {
+    if ([type isEqualToString:@"hot"]) {
+        _itemArrayHot = [[NSMutableArray alloc] init];
+        _rowCountHot = 0;
+        _currentPageHot = 1;
+        _pageCountHot = 1;
+    } else if ([type isEqualToString:@"latest"]){
+        _itemArrayLatest = [[NSMutableArray alloc] init];
+        _rowCountLatest = 0;
+        _currentPageLatest = 1;
+        _pageCountLatest = 1;
+    }
 }
 
 /**
@@ -109,9 +125,14 @@
  */
 - (void)setTableviewHeaderControl {
     // 下拉刷新
-    _tableView.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [self initializeData];
-        [self downloadDataWithType:_currentType WithPage:_currentPage];
+    _tableView01.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self initializeDataWithType:@"hot"];
+        [self downloadDataWithType:@"hot" WithPage:_currentPageHot];
+    }];
+    
+    _tableView02.mj_header= [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self initializeDataWithType:@"latest"];
+        [self downloadDataWithType:@"latest" WithPage:_currentPageLatest];
     }];
 
 }
@@ -119,51 +140,91 @@
 /**
  設定上拉刷新控制
  */
-- (void)setTableviewFooterControl {
+- (void)setTableviewFooterControlWithType:(NSString *)type {
     // 上拉刷新
-    _tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-        if (_currentPage < _pageCount) {
-            _currentPage++;
-            [self downloadDataWithType:_currentType WithPage:_currentPage];
-        } else {
-            [_tableView.mj_footer endRefreshing];
-        }
-    }];
+    if([type isEqualToString:@"hot"]) {
+        _tableView01.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+            if (_currentPageHot < _pageCountHot) {
+                _currentPageHot++;
+                [self downloadDataWithType:type WithPage:_currentPageHot];
+            } else {
+                [_tableView01.mj_footer endRefreshing];
+            }
+        }];
+    } else if ([type isEqualToString:@"latest"]) {
+        _tableView02.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+            if (_currentPageLatest < _pageCountLatest) {
+                _currentPageLatest++;
+                [self downloadDataWithType:type WithPage:_currentPageLatest];
+            } else {
+                [_tableView02.mj_footer endRefreshing];
+            }
+        }];
+    }
 }
 
 /**
  Call the Function to download data from the API
  */
 - (void)downloadDataWithType :(NSString *)type WithPage :(NSInteger)page {
+    //Initilize API URL
     NSString *baseAPI = @"https://styleme-app-api.events.pixnet.net/goods/list?";
     NSString *typeStr = [NSString stringWithFormat:@"type=%@&", type];
     NSString *pageStr = [NSString stringWithFormat:@"page=%ld&", (long)page];
     NSString *amountStr = [NSString stringWithFormat:@"per_page=%d&", 20];
     NSString *urlStr = [[[baseAPI stringByAppendingString:typeStr] stringByAppendingString:pageStr] stringByAppendingString:amountStr];
     NSURL *url = [NSURL URLWithString:urlStr];
+    
+    //Start Download JSON Here - ASYNCHRONIZE
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     [manager GET:url.absoluteString parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
-        //NSLog(@"JSON: %@", responseObject);
+        
         NSInteger pageItemCount = [[responseObject objectForKey:type] count];
-        _rowCount += pageItemCount;
-        _pageCount = [[responseObject objectForKey:@"total_page"] integerValue];
-        //Abstract JSON to Model
-        for (int i = 0; i < pageItemCount; i++) {
-            Item *item = [Item yy_modelWithJSON:[[responseObject objectForKey:type] objectAtIndex:i]];
-            [_itemArray addObject:item];
-        }
         
-        //Reload Data on Table
-        [_tableView reloadData];
-        //END Refreshing
-        [_tableView.mj_header endRefreshing];
-        [_tableView.mj_footer endRefreshing];
-        
-        //Handle Page Control
-        if (_currentPage == _pageCount) {
-            _tableView.mj_footer = nil;
-        } else {
-            [self setTableviewFooterControl];
+        if ([type isEqualToString:@"hot"]) {
+            _rowCountHot += pageItemCount;
+            _pageCountHot = [[responseObject objectForKey:@"total_page"] integerValue];
+            //Abstract JSON to Model
+            for (int i = 0; i < pageItemCount; i++) {
+                Item *item = [Item yy_modelWithJSON:[[responseObject objectForKey:type] objectAtIndex:i]];
+                [_itemArrayHot addObject:item];
+            }
+            
+            //Reload Data on Table
+            [_tableView01 reloadData];
+            
+            //END Refreshing
+            [_tableView01.mj_header endRefreshing];
+            [_tableView01.mj_footer endRefreshing];
+            
+            //Handle END Page Control
+            if (_currentPageHot == _pageCountHot) {
+                _tableView01.mj_footer = nil;
+            } else {
+                [self setTableviewFooterControlWithType:type];
+            }
+        } else if ([type isEqualToString:@"latest"]) {
+            _rowCountLatest += pageItemCount;
+            _pageCountLatest = [[responseObject objectForKey:@"total_page"] integerValue];
+            //Abstract JSON to Model
+            for (int i = 0; i < pageItemCount; i++) {
+                Item *item = [Item yy_modelWithJSON:[[responseObject objectForKey:type] objectAtIndex:i]];
+                [_itemArrayLatest addObject:item];
+            }
+            
+            //Reload Data on Table
+            [_tableView02 reloadData];
+            
+            //END Refreshing
+            [_tableView02.mj_header endRefreshing];
+            [_tableView02.mj_footer endRefreshing];
+            
+            //Handle END Page Control
+            if (_currentPageLatest == _pageCountLatest) {
+                _tableView02.mj_footer = nil;
+            } else {
+                [self setTableviewFooterControlWithType:type];
+            }
         }
     } failure:^(NSURLSessionTask *operation, NSError *error) {
         NSLog(@"Error: %@", error);
@@ -172,27 +233,45 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _rowCount;
+    switch (tableView.tag) {
+        case 0:
+            return _rowCountHot;
+            break;
+        case 1:
+            return _rowCountLatest;
+            break;
+        default:
+            return 0;
+            break;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    Item *object = [_itemArray objectAtIndex:indexPath.row];
+    Item *object = [Item new];
+    switch (tableView.tag) {
+        case 0:
+            object = [_itemArrayHot objectAtIndex:indexPath.row];
+            break;
+        case 1:
+            object = [_itemArrayLatest objectAtIndex:indexPath.row];
+            break;
+        default:
+            break;
+    }
     NSString *ID = object.itemID;
     TESTTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     if (!cell) {
         cell = [[TESTTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
-        if(_rowCount != 0) {
-            cell.imgLink = object.thumb_url;
-            cell.brand = object.brand;
-            cell.name = object.name;
-            cell.summary = object.summary;
-        }
+        cell.imgLink = object.thumb_url;
+        cell.brand = object.brand;
+        cell.name = object.name;
+        cell.summary = object.summary;
     }
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [self tableView:_tableView cellForRowAtIndexPath:indexPath];
+    UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
     return cell.frame.size.width;
 }
 

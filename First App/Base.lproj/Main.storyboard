@@ -43,6 +43,10 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
+                            <tableView clipsSubviews="YES" tag="1" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="INA-xl-tJs">
+                                <rect key="frame" x="0.0" y="132" width="375" height="535"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QHJ-33-iYm">
                                 <rect key="frame" x="0.0" y="64" width="375" height="60"/>
                                 <color key="backgroundColor" red="0.125" green="0.125" blue="0.125" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -53,19 +57,24 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="UJr-Ih-tgx" firstAttribute="top" secondItem="INA-xl-tJs" secondAttribute="bottom" id="7nZ-rY-MC2"/>
                             <constraint firstItem="QHJ-33-iYm" firstAttribute="leading" secondItem="33X-DA-S82" secondAttribute="leading" id="9BR-ag-fUl"/>
                             <constraint firstItem="yu6-9k-9N2" firstAttribute="top" secondItem="QHJ-33-iYm" secondAttribute="bottom" constant="-60" id="DIn-y7-mDR"/>
                             <constraint firstItem="yu6-9k-9N2" firstAttribute="leading" secondItem="33X-DA-S82" secondAttribute="leading" id="MfW-8Y-Ay5"/>
+                            <constraint firstAttribute="trailing" secondItem="INA-xl-tJs" secondAttribute="trailing" id="O6V-SG-Anf"/>
                             <constraint firstItem="QHJ-33-iYm" firstAttribute="top" secondItem="X51-pV-Kpb" secondAttribute="bottom" id="PO4-L6-FbJ"/>
+                            <constraint firstItem="INA-xl-tJs" firstAttribute="top" secondItem="QHJ-33-iYm" secondAttribute="bottom" constant="8" id="YPY-pR-cEz"/>
                             <constraint firstAttribute="trailing" secondItem="yu6-9k-9N2" secondAttribute="trailing" id="Z2Y-4f-PJu"/>
                             <constraint firstItem="UJr-Ih-tgx" firstAttribute="top" secondItem="yu6-9k-9N2" secondAttribute="bottom" id="ezc-gw-HHW"/>
                             <constraint firstAttribute="trailing" secondItem="QHJ-33-iYm" secondAttribute="trailing" id="kwR-WD-FGU"/>
+                            <constraint firstItem="INA-xl-tJs" firstAttribute="leading" secondItem="33X-DA-S82" secondAttribute="leading" id="zUA-KS-ozi"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="StyleMe" id="0eE-mm-dFn"/>
                     <connections>
                         <outlet property="tabBarView" destination="QHJ-33-iYm" id="I5T-NU-ixT"/>
-                        <outlet property="tableView" destination="yu6-9k-9N2" id="nU7-I4-aaH"/>
+                        <outlet property="tableView01" destination="yu6-9k-9N2" id="M8a-bX-Bgf"/>
+                        <outlet property="tableView02" destination="INA-xl-tJs" id="5Ev-kP-t1s"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ER4-fl-9xi" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -19,10 +19,9 @@
 @interface ViewController : UIViewController  <UITableViewDelegate, UITableViewDataSource>
 
 
-/**Row of Table Data*/
-@property (nonatomic, assign) NSInteger rowCount;
-@property (weak, nonatomic) IBOutlet UIView *tabBarView;
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+@property (weak, nonatomic) IBOutlet UIView *tabBarView;
+@property (weak, nonatomic) IBOutlet UITableView *tableView01;
+@property (weak, nonatomic) IBOutlet UITableView *tableView02;
 @end
 
