@@ -10,7 +10,11 @@
 
 @interface ItemDetailHeaderView : UIView
 
-@property (nonatomic) NSInteger triggerState;
+@property (nonatomic, assign) UIButton *headerBtn;
+
+/**
+ Set Header Title
+ */
 @property (nonatomic, copy) NSString *headerTitleText;
 
 @end

@@ -13,6 +13,8 @@ target 'First App' do
   pod 'SDAutoLayout'
   pod 'MJRefresh'
   pod 'HMSegmentedControl'
+  pod 'HCSStarRatingView'
+  pod 'SVProgressHUD'
 
   target 'First AppTests' do
       inherit! :search_paths

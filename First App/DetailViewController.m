@@ -10,6 +10,7 @@
 #import "ItemDetailTableViewCell.h"
 #import "ItemSummaryTableViewCell.h"
 #import "ItemDetailHeaderView.h"
+#import "RatingOptionTableViewCell.h"
 #import "Global.h"
 #import "APIReference.h"
 
@@ -18,8 +19,16 @@
 typedef NS_ENUM(NSInteger, DetailType) {
     BasicInfo,
     Summary,
-    TestUser,
-    Rating
+    EmptyView01,
+    Rating,
+    FullRating,
+    EmptyView02,
+    ExperienceQuestionArticle,
+};
+
+typedef NS_ENUM(NSInteger, TriggerState) {
+    Close,
+    Expand
 };
 
 @interface DetailViewController ()
@@ -27,9 +36,17 @@ typedef NS_ENUM(NSInteger, DetailType) {
 @end
 
 @implementation DetailViewController
+{
+    TriggerState summaryTriggerState;
+    TriggerState fullRatingTriggerState;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    summaryTriggerState = Close;
+    fullRatingTriggerState = Close;
+    
     [self downloadData];
 }
 
@@ -44,14 +61,30 @@ typedef NS_ENUM(NSInteger, DetailType) {
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     [manager GET:url.absoluteString parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
-        NSLog(@"%@", responseObject);
+        //NSLog(@"%@", responseObject);
     } failure:^(NSURLSessionTask *operation, NSError *error) {
         NSLog(@"Error: %@", error);
     }];
 }
 
+- (void)touchSummaryControl: (UIButton *)sender {
+    switch (sender.tag) {
+        case Summary:
+        {
+            summaryTriggerState = !summaryTriggerState;
+            [self.tableView reloadData];
+        }
+            break;
+            
+        default:
+        {
+        }
+            break;
+    }
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 7;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -63,17 +96,28 @@ typedef NS_ENUM(NSInteger, DetailType) {
             break;
         case Summary:
         {
-            return 1;
+            return summaryTriggerState;
         }
             break;
-        case TestUser:
+        case EmptyView01:
+        case EmptyView02:
         {
-            return 0;
+            return 1;
         }
             break;
         case Rating:
         {
-            return 0;
+            return 3;
+        }
+            break;
+        case FullRating:
+        {
+            return fullRatingTriggerState;
+        }
+            break;
+        case ExperienceQuestionArticle:
+        {
+            return 1;
         }
             break;
         default:
@@ -91,7 +135,46 @@ typedef NS_ENUM(NSInteger, DetailType) {
             header.sd_layout
             .heightIs(30)
             .widthIs([self cellContentViewWith]);
+            header.headerBtn.tag = Summary;
+            [header.headerBtn addTarget:self
+                               action:@selector(touchSummaryControl:)
+                     forControlEvents:UIControlEventTouchUpInside];
+            if (summaryTriggerState == Close) {
+                [header.headerBtn setImage:[UIImage imageNamed:@"mask.png"] forState:UIControlStateNormal];
+            } else {
+                [header.headerBtn setImage:[UIImage imageNamed:@"imgMoreArrowBlackSmall.jpg"] forState:UIControlStateNormal];
+            }
+
             return header;
+        }
+            break;
+        case FullRating:
+        {
+            ItemDetailHeaderView *header = [ItemDetailHeaderView new];
+            header.headerTitleText = @"看完整";
+            header.sd_layout
+            .heightIs(30)
+            .widthIs([self cellContentViewWith]);
+            header.headerBtn.tag = FullRating;
+            [header.headerBtn addTarget:self
+                                 action:@selector(touchSummaryControl:)
+                       forControlEvents:UIControlEventTouchUpInside];
+            if (fullRatingTriggerState == Close) {
+                [header.headerBtn setImage:[UIImage imageNamed:@"mask.png"] forState:UIControlStateNormal];
+            } else {
+                [header.headerBtn setImage:[UIImage imageNamed:@"imgMoreArrowBlackSmall.jpg"] forState:UIControlStateNormal];
+            }
+            
+            return header;
+        }
+            break;
+        case ExperienceQuestionArticle:
+        {
+            CGFloat viewWidth = CGRectGetWidth(self.view.frame);
+            HMSegmentedControl *segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"心得", @"發問"]];
+            segmentedControl.frame = CGRectMake(0, 0, viewWidth, 60);
+            [segmentedControl addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
+            return segmentedControl;
         }
             break;
         default:
@@ -106,8 +189,14 @@ typedef NS_ENUM(NSInteger, DetailType) {
     
     switch (section) {
         case Summary:
+        case FullRating:
         {
             return 30;
+        }
+            break;
+        case ExperienceQuestionArticle:
+        {
+            return 60;
         }
             break;
         default:
@@ -124,7 +213,7 @@ typedef NS_ENUM(NSInteger, DetailType) {
         case BasicInfo:
         {
             Item *object = _item;
-            NSString *ID = object.itemID;
+            NSString *ID = [NSString stringWithFormat:@"B%@", object.itemID];
             ItemDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
             if (!cell) {
                 cell = [[ItemDetailTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
@@ -137,7 +226,7 @@ typedef NS_ENUM(NSInteger, DetailType) {
         case Summary:
         {
             Item *object = _item;
-            NSString *ID = object.itemID;
+            NSString *ID = [NSString stringWithFormat:@"S%@", object.itemID];
             ItemSummaryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
             if (!cell) {
                 cell = [[ItemSummaryTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
@@ -145,6 +234,50 @@ typedef NS_ENUM(NSInteger, DetailType) {
             cell.model = object;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.contentView.backgroundColor = COLOR_SUPERLIGHT_GREY;
+            return cell;
+        }
+            break;
+        case EmptyView01:
+        case EmptyView02:
+        {
+            UITableViewCell *cell = [UITableViewCell new];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.contentView.backgroundColor = COLOR_WHITE_THREE;
+            return cell;
+        }
+            break;
+        case Rating:
+        {
+            Item *object = _item;
+            NSString *ID = [NSString stringWithFormat:@"R%@", object.itemID];
+            RatingOptionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+            if (!cell) {
+                cell = [[RatingOptionTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+            }
+            cell.model = object;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            switch (indexPath.row) {
+                case 0:
+                {
+                    cell.optionTitle = @"綜合評分";
+                    cell.optionBtnTitle = @"我要評分";
+                }
+                    break;
+                case 1:
+                {
+                    cell.optionTitle = @"與我相同條件評分";
+                    cell.optionBtnTitle = @"我想看";
+                }
+                    break;
+                case 2:
+                {
+                    cell.optionTitle = @"我的評分";
+                    cell.optionBtnTitle = @"我要評分";
+                }
+                    break;
+                default:
+                    break;
+            }
             return cell;
         }
             break;
@@ -176,6 +309,20 @@ typedef NS_ENUM(NSInteger, DetailType) {
             return height;
         }
             break;
+        case EmptyView01:
+        case EmptyView02:
+        {
+            return 6;
+        }
+            break;
+        case Rating:
+        {
+            id model = _item;
+            // 获取cell高度
+            CGFloat height = [self.tableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[RatingOptionTableViewCell class]  contentViewWidth:[self cellContentViewWith]];
+            return height;
+        }
+            break;
         default:
         {
             return 0;
@@ -192,6 +339,15 @@ typedef NS_ENUM(NSInteger, DetailType) {
         width = [UIScreen mainScreen].bounds.size.height;
     }
     return width;
+}
+
+- (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl {
+    NSLog(@"Selected index %ld (via UIControlEventValueChanged)", (long)segmentedControl.selectedSegmentIndex);
+    
+}
+
+- (void)uisegmentedControlChangedValue:(UISegmentedControl *)segmentedControl {
+    //NSLog(@"Selected index %ld", (long)segmentedControl.selectedSegmentIndex);
 }
 
 - (void)setItem:(Item *)item {

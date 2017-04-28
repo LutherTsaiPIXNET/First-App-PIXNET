@@ -12,9 +12,6 @@
 #import "Global.h"
 
 @implementation ItemDetailHeaderView
-{
-    UIButton *_headerBtn;
-}
 
 - (instancetype)init {
     if (self = [super init]) {
@@ -28,24 +25,23 @@
         headerBtn.titleLabel.minimumScaleFactor = 0.2;
         [headerBtn.titleLabel setFont:[UIFont systemFontOfSize:16]];
         headerBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
-        headerBtn.imageView.contentMode = UIViewContentModeScaleAspectFit;
+        //headerBtn.imageView.contentMode = UIViewContentModeScaleAspectFit;
+        [headerBtn.imageView setContentMode:UIViewContentModeScaleAspectFit];
         _headerBtn = headerBtn;
         
         [self sd_addSubviews:@[_headerBtn]];
         
-        // 设置isCollectedPersonLbl的Image的约束
+        _headerBtn.titleLabel.sd_layout
+        .heightIs(22)
+        .widthIs(60)
+        .topEqualToView(_headerBtn)
+        .centerXEqualToView(_headerBtn);
+
         _headerBtn.imageView.sd_layout
         .widthIs(22)
-        .heightEqualToWidth()
-        .topEqualToView(headerBtn)
-        .centerXEqualToView(headerBtn);
-        
-        // 设置isCollectedPersonLbl的Label的约束
-        _headerBtn.titleLabel.sd_layout
-        .widthIs(60)
         .heightIs(22)
-        .topEqualToView(headerBtn)
-        .centerXEqualToView(headerBtn);
+        .topEqualToView(_headerBtn)
+        .leftSpaceToView(_headerBtn.titleLabel, 0);
         
         _headerBtn.sd_layout
         .topSpaceToView(self, 9)
@@ -53,7 +49,7 @@
         .leftSpaceToView(self, 0)
         .bottomEqualToView(self);
         
-        [self setupAutoHeightWithBottomView:headerBtn bottomMargin:0];
+        [self setupAutoHeightWithBottomView:headerBtn bottomMargin:10];
 
     }
     return self;
@@ -61,10 +57,7 @@
 
 - (void)setHeaderTitleText:(NSString *)headerTitleText {
     _headerTitleText = headerTitleText;
-}
-
-- (void)setTriggerState:(NSInteger)triggerState {
-    _triggerState = triggerState;
+    _headerBtn.titleLabel.text = _headerTitleText;
 }
 
 @end
