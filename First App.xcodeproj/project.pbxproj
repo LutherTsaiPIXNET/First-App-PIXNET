@@ -20,6 +20,7 @@
 		713F21B21EB2CDD80082E3A0 /* ItemSummaryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 713F21B11EB2CDD80082E3A0 /* ItemSummaryTableViewCell.m */; };
 		713F21B81EB2D7790082E3A0 /* ItemDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 713F21B71EB2D7790082E3A0 /* ItemDetailHeaderView.m */; };
 		713F21BB1EB2F54B0082E3A0 /* RatingOptionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 713F21BA1EB2F54B0082E3A0 /* RatingOptionTableViewCell.m */; };
+		713F21BE1EB3342A0082E3A0 /* RatingStarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 713F21BD1EB3342A0082E3A0 /* RatingStarTableViewCell.m */; };
 		7154106B1EAEDC9A001D95B1 /* ItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7154106A1EAEDC9A001D95B1 /* ItemTableViewCell.m */; };
 		7159B2A81EB1D9CC00BE67ED /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7159B2A71EB1D9CC00BE67ED /* DetailViewController.m */; };
 		7159B2AC1EB1E1FD00BE67ED /* ItemDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7159B2AB1EB1E1FD00BE67ED /* ItemDetailTableViewCell.m */; };
@@ -73,6 +74,8 @@
 		713F21B71EB2D7790082E3A0 /* ItemDetailHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemDetailHeaderView.m; path = DetailTableViewCell/ItemDetailHeaderView.m; sourceTree = "<group>"; };
 		713F21B91EB2F54B0082E3A0 /* RatingOptionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RatingOptionTableViewCell.h; path = DetailTableViewCell/RatingOptionTableViewCell.h; sourceTree = "<group>"; };
 		713F21BA1EB2F54B0082E3A0 /* RatingOptionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RatingOptionTableViewCell.m; path = DetailTableViewCell/RatingOptionTableViewCell.m; sourceTree = "<group>"; };
+		713F21BC1EB3342A0082E3A0 /* RatingStarTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RatingStarTableViewCell.h; path = DetailTableViewCell/RatingStarTableViewCell.h; sourceTree = "<group>"; };
+		713F21BD1EB3342A0082E3A0 /* RatingStarTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RatingStarTableViewCell.m; path = DetailTableViewCell/RatingStarTableViewCell.m; sourceTree = "<group>"; };
 		715410691EAEDC9A001D95B1 /* ItemTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ItemTableViewCell.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		7154106A1EAEDC9A001D95B1 /* ItemTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ItemTableViewCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		7154106C1EAEEF25001D95B1 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -236,6 +239,8 @@
 				713F21B71EB2D7790082E3A0 /* ItemDetailHeaderView.m */,
 				713F21B91EB2F54B0082E3A0 /* RatingOptionTableViewCell.h */,
 				713F21BA1EB2F54B0082E3A0 /* RatingOptionTableViewCell.m */,
+				713F21BC1EB3342A0082E3A0 /* RatingStarTableViewCell.h */,
+				713F21BD1EB3342A0082E3A0 /* RatingStarTableViewCell.m */,
 			);
 			name = DetailTableViewCell;
 			sourceTree = "<group>";
@@ -559,6 +564,7 @@
 				710249401EADEABE00B872B8 /* ListViewController.m in Sources */,
 				7154106B1EAEDC9A001D95B1 /* ItemTableViewCell.m in Sources */,
 				7102493D1EADEABE00B872B8 /* AppDelegate.m in Sources */,
+				713F21BE1EB3342A0082E3A0 /* RatingStarTableViewCell.m in Sources */,
 				713F21B21EB2CDD80082E3A0 /* ItemSummaryTableViewCell.m in Sources */,
 				713F21BB1EB2F54B0082E3A0 /* RatingOptionTableViewCell.m in Sources */,
 				71D94F371EB1CF9E00FEA6B4 /* APIReference.m in Sources */,

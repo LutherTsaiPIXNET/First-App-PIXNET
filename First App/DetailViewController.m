@@ -11,6 +11,7 @@
 #import "ItemSummaryTableViewCell.h"
 #import "ItemDetailHeaderView.h"
 #import "RatingOptionTableViewCell.h"
+#import "RatingStarTableViewCell.h"
 #import "Global.h"
 #import "APIReference.h"
 
@@ -250,35 +251,53 @@ typedef NS_ENUM(NSInteger, TriggerState) {
         {
             Item *object = _item;
             NSString *ID = [NSString stringWithFormat:@"R%@", object.itemID];
-            RatingOptionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-            if (!cell) {
-                cell = [[RatingOptionTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
-            }
-            cell.model = object;
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             switch (indexPath.row) {
                 case 0:
                 {
+                    RatingStarTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+                    if (!cell) {
+                        cell = [[RatingStarTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+                    }
+                    cell.model = object;
+                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
                     cell.optionTitle = @"綜合評分";
-                    cell.optionBtnTitle = @"我要評分";
+                    return cell;
                 }
                     break;
                 case 1:
                 {
+                    RatingOptionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+                    if (!cell) {
+                        cell = [[RatingOptionTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+                    }
+                    cell.model = object;
+                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
                     cell.optionTitle = @"與我相同條件評分";
                     cell.optionBtnTitle = @"我想看";
+                    return cell;
                 }
                     break;
                 case 2:
                 {
+                    RatingOptionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+                    if (!cell) {
+                        cell = [[RatingOptionTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+                    }
+                    cell.model = object;
+                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
                     cell.optionTitle = @"我的評分";
                     cell.optionBtnTitle = @"我要評分";
+                    return cell;
                 }
                     break;
                 default:
+                {
+                    UITableViewCell *cell = [UITableViewCell new];
+                    return cell;
+                }
                     break;
             }
-            return cell;
         }
             break;
         default:

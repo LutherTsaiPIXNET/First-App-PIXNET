@@ -28,11 +28,13 @@ typedef NS_ENUM(NSInteger, IsCollectState) {
     UILabel *_capPriceLbl;
     UILabel *_isCollectedPersonLbl;
     IsCollectState isCollectState;
+    NSInteger collectedNumber;
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        isCollectState = NotCollected;
+        isCollectState = IsCollected;
+        collectedNumber = 1;
         
         //商品[圖片]UI設定
         UIImageView *imgView = [UIImageView new];
@@ -153,11 +155,15 @@ typedef NS_ENUM(NSInteger, IsCollectState) {
         [_isCollectedBtn setTitle:@"已收藏" forState:UIControlStateNormal];
         [_isCollectedBtn setImage:[UIImage imageNamed:@"btnLikeProduct.png"] forState:UIControlStateNormal];
         isCollectState = IsCollected;
+        collectedNumber++;
     } else {
         [_isCollectedBtn setTitle:@"收藏" forState:UIControlStateNormal];
         [_isCollectedBtn setImage:[UIImage imageNamed:@"btnUnLikeProduct.png"] forState:UIControlStateNormal];
         isCollectState = NotCollected;
+        collectedNumber--;
     }
+    _isCollectedPersonLbl.text = [NSString stringWithFormat:@"%ld人", collectedNumber];
+    [_isCollectedPersonLbl updateLayout];
 }
 
 - (void)setModel:(Item *)model {
@@ -165,7 +171,7 @@ typedef NS_ENUM(NSInteger, IsCollectState) {
     _itemNameLbl.text = model.name;
     _brandNameLbl.text = model.brand;
     _capPriceLbl.text = [NSString stringWithFormat:@"%@/%@", model.capacity, model.price];
-    _isCollectedPersonLbl.text = [NSString stringWithFormat:@"%@人", @"999"];
+    _isCollectedPersonLbl.text = [NSString stringWithFormat:@"%ld人", collectedNumber];
     
     [_imgView sd_setImageWithURL:[NSURL URLWithString:model.thumb_url]];
     [_capPriceLbl updateLayout];
