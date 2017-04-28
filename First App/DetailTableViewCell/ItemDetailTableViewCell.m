@@ -8,12 +8,16 @@
 
 #import "ItemDetailTableViewCell.h"
 #import "UIView+SDAutoLayout.h"
-
 #import "UITableView+SDAutoTableViewCellHeight.h"
 #import "UIImageView+WebCache.h"
 #import "Global.h"
 
-#define MARGIN 10.0
+#define MARGIN 18.0
+
+typedef NS_ENUM(NSInteger, IsCollectState) {
+    IsCollected,
+    NotCollected
+};
 
 @implementation ItemDetailTableViewCell
 {
@@ -23,16 +27,20 @@
     UILabel *_itemNameLbl;
     UILabel *_capPriceLbl;
     UILabel *_isCollectedPersonLbl;
+    IsCollectState isCollectState;
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        isCollectState = NotCollected;
         
+        //商品[圖片]UI設定
         UIImageView *imgView = [UIImageView new];
         imgView.backgroundColor = [UIColor whiteColor];
         imgView.contentMode = UIViewContentModeScaleAspectFit;
         _imgView = imgView;
         
+        //商品[品牌]UI設定
         UILabel *brandName = [UILabel new];
         brandName.numberOfLines = 1;
         brandName.minimumScaleFactor = 0.2;
@@ -40,6 +48,7 @@
         [brandName setFont:[UIFont systemFontOfSize:16]];
         _brandNameLbl = brandName;
         
+        //商品[名稱]UI設定
         UILabel *itemName = [UILabel new];
         itemName.numberOfLines = 1;
         itemName.minimumScaleFactor = 0.2;
@@ -47,6 +56,7 @@
         [itemName setFont:[UIFont systemFontOfSize:16]];
         _itemNameLbl = itemName;
         
+        //商品[容量&價格]UI設定
         UILabel *capPriceLbl = [UILabel new];
         capPriceLbl.numberOfLines = 1;
         capPriceLbl.adjustsFontSizeToFitWidth = NO;
@@ -54,6 +64,7 @@
         [capPriceLbl setTextColor: COLOR_WARM_GREY];
         _capPriceLbl = capPriceLbl;
         
+        //商品[收藏]UI設定
         UIButton *isCollectedBtn = [UIButton new];
         [isCollectedBtn setTitle:@"已收藏" forState:UIControlStateNormal];
         [isCollectedBtn setImage:[UIImage imageNamed:@"btnLikeProduct.png"] forState:UIControlStateNormal];
@@ -63,8 +74,12 @@
         [isCollectedBtn.titleLabel setFont:[UIFont systemFontOfSize:16]];
         isCollectedBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
         isCollectedBtn.imageView.contentMode = UIViewContentModeScaleAspectFit;
+        [isCollectedBtn addTarget:self
+                   action:@selector(touchCollectBtn:)
+         forControlEvents:UIControlEventTouchUpInside];
         _isCollectedBtn = isCollectedBtn;
         
+        //商品[收藏人數]UI設定
         UILabel *isCollectedPersonLbl = [UILabel new];
         isCollectedPersonLbl.textAlignment = NSTextAlignmentCenter;
         isCollectedPersonLbl.numberOfLines = 1;
@@ -74,21 +89,21 @@
         [isCollectedPersonLbl setTextColor:COLOR_WARM_GREY];
         _isCollectedPersonLbl = isCollectedPersonLbl;
         
-        // 设置button的图片的约束
+        // 设置isCollectedPersonLbl的Image的约束
         isCollectedBtn.imageView.sd_layout
         .widthIs(26)
         .heightEqualToWidth()
         .topEqualToView(isCollectedBtn)
         .centerXEqualToView(isCollectedBtn);
         
-        // 设置button的label的约束
+        // 设置isCollectedPersonLbl的Label的约束
         isCollectedBtn.titleLabel.sd_layout
         .widthIs(48)
         .heightIs(22)
         .topSpaceToView(isCollectedBtn.imageView, 0)
         .centerXEqualToView(isCollectedBtn);
 
-        
+        //Add to Content View
         [self.contentView sd_addSubviews:@[_imgView, _brandNameLbl, _itemNameLbl, _capPriceLbl, _isCollectedBtn, _isCollectedPersonLbl]];
         
         //SDAutoLayout Setting
@@ -133,6 +148,18 @@
     return self;
 }
 
+- (void)touchCollectBtn: (UIButton*)sender {
+    if(isCollectState != IsCollected) {
+        [_isCollectedBtn setTitle:@"已收藏" forState:UIControlStateNormal];
+        [_isCollectedBtn setImage:[UIImage imageNamed:@"btnLikeProduct.png"] forState:UIControlStateNormal];
+        isCollectState = IsCollected;
+    } else {
+        [_isCollectedBtn setTitle:@"收藏" forState:UIControlStateNormal];
+        [_isCollectedBtn setImage:[UIImage imageNamed:@"btnUnLikeProduct.png"] forState:UIControlStateNormal];
+        isCollectState = NotCollected;
+    }
+}
+
 - (void)setModel:(Item *)model {
     _model = model;
     _itemNameLbl.text = model.name;
@@ -143,7 +170,7 @@
     [_imgView sd_setImageWithURL:[NSURL URLWithString:model.thumb_url]];
     [_capPriceLbl updateLayout];
     
-    [self setupAutoHeightWithBottomView:_capPriceLbl bottomMargin:MARGIN];
+    [self setupAutoHeightWithBottomView:_capPriceLbl bottomMargin:18];
 }
 
 @end

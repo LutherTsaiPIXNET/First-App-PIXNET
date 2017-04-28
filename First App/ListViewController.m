@@ -106,7 +106,7 @@
 }
 
 - (void)uisegmentedControlChangedValue:(UISegmentedControl *)segmentedControl {
-    NSLog(@"Selected index %ld", (long)segmentedControl.selectedSegmentIndex);
+    //NSLog(@"Selected index %ld", (long)segmentedControl.selectedSegmentIndex);
 }
 
 /**
@@ -175,7 +175,6 @@
  */
 - (void)downloadDataWithType :(CategoryType)type WithPage :(NSInteger)page {
     //Initilize API URL
-    
     NSURL *url = [NSURL URLWithString:[APIReference getJSONDataWithType:type withPage:page]];
     
     //Start Download JSON Here - ASYNCHRONIZE

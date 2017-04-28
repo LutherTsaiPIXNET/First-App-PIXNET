@@ -24,6 +24,15 @@
 
 
 /**
+ 抓取商品內頁API
+
+ @param itemID 商品ID
+ @param token 給定TOKEN判定登入
+ @return NSString *URL
+ */
++ (NSString *)getJSONDataWithItemID:(NSString *)itemID withToken:(NSString *)token;
+
+/**
  取得類別字串
 
  @param type CategoryType

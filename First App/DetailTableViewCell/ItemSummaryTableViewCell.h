@@ -1,15 +1,15 @@
 //
-//  ItemDetailTableViewCell.h
+//  ItemSummaryTableViewCell.h
 //  First App
 //
-//  Created by luthertsai on 2017/4/27.
+//  Created by luthertsai on 2017/4/28.
 //  Copyright © 2017年 luthertsai. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "Item.h"
 
-@interface ItemDetailTableViewCell : UITableViewCell
+@interface ItemSummaryTableViewCell : UITableViewCell
 
 /**
  Item Model

@@ -17,6 +17,8 @@
 		710249481EADEABF00B872B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 710249461EADEABF00B872B8 /* LaunchScreen.storyboard */; };
 		710249531EADEABF00B872B8 /* First_AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 710249521EADEABF00B872B8 /* First_AppTests.m */; };
 		7102495E1EADEABF00B872B8 /* First_AppUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7102495D1EADEABF00B872B8 /* First_AppUITests.m */; };
+		713F21B21EB2CDD80082E3A0 /* ItemSummaryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 713F21B11EB2CDD80082E3A0 /* ItemSummaryTableViewCell.m */; };
+		713F21B81EB2D7790082E3A0 /* ItemDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 713F21B71EB2D7790082E3A0 /* ItemDetailHeaderView.m */; };
 		7154106B1EAEDC9A001D95B1 /* ItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7154106A1EAEDC9A001D95B1 /* ItemTableViewCell.m */; };
 		7159B2A81EB1D9CC00BE67ED /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7159B2A71EB1D9CC00BE67ED /* DetailViewController.m */; };
 		7159B2AC1EB1E1FD00BE67ED /* ItemDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7159B2AB1EB1E1FD00BE67ED /* ItemDetailTableViewCell.m */; };
@@ -64,6 +66,10 @@
 		710249591EADEABF00B872B8 /* First AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "First AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7102495D1EADEABF00B872B8 /* First_AppUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = First_AppUITests.m; sourceTree = "<group>"; };
 		7102495F1EADEABF00B872B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		713F21B01EB2CDD80082E3A0 /* ItemSummaryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemSummaryTableViewCell.h; path = DetailTableViewCell/ItemSummaryTableViewCell.h; sourceTree = "<group>"; };
+		713F21B11EB2CDD80082E3A0 /* ItemSummaryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemSummaryTableViewCell.m; path = DetailTableViewCell/ItemSummaryTableViewCell.m; sourceTree = "<group>"; };
+		713F21B61EB2D7790082E3A0 /* ItemDetailHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemDetailHeaderView.h; path = DetailTableViewCell/ItemDetailHeaderView.h; sourceTree = "<group>"; };
+		713F21B71EB2D7790082E3A0 /* ItemDetailHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemDetailHeaderView.m; path = DetailTableViewCell/ItemDetailHeaderView.m; sourceTree = "<group>"; };
 		715410691EAEDC9A001D95B1 /* ItemTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ItemTableViewCell.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		7154106A1EAEDC9A001D95B1 /* ItemTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ItemTableViewCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		7154106C1EAEEF25001D95B1 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -221,6 +227,10 @@
 			children = (
 				7159B2AA1EB1E1FD00BE67ED /* ItemDetailTableViewCell.h */,
 				7159B2AB1EB1E1FD00BE67ED /* ItemDetailTableViewCell.m */,
+				713F21B01EB2CDD80082E3A0 /* ItemSummaryTableViewCell.h */,
+				713F21B11EB2CDD80082E3A0 /* ItemSummaryTableViewCell.m */,
+				713F21B61EB2D7790082E3A0 /* ItemDetailHeaderView.h */,
+				713F21B71EB2D7790082E3A0 /* ItemDetailHeaderView.m */,
 			);
 			name = DetailTableViewCell;
 			sourceTree = "<group>";
@@ -539,10 +549,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				71AAA7341EAEFBB20054933D /* Item.m in Sources */,
+				713F21B81EB2D7790082E3A0 /* ItemDetailHeaderView.m in Sources */,
 				7159B2AC1EB1E1FD00BE67ED /* ItemDetailTableViewCell.m in Sources */,
 				710249401EADEABE00B872B8 /* ListViewController.m in Sources */,
 				7154106B1EAEDC9A001D95B1 /* ItemTableViewCell.m in Sources */,
 				7102493D1EADEABE00B872B8 /* AppDelegate.m in Sources */,
+				713F21B21EB2CDD80082E3A0 /* ItemSummaryTableViewCell.m in Sources */,
 				71D94F371EB1CF9E00FEA6B4 /* APIReference.m in Sources */,
 				7102493A1EADEABE00B872B8 /* main.m in Sources */,
 				7159B2A81EB1D9CC00BE67ED /* DetailViewController.m in Sources */,

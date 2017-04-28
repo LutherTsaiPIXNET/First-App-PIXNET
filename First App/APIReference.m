@@ -21,6 +21,13 @@
     return urlStr;
 }
 
++ (NSString *)getJSONDataWithItemID:(NSString *)itemID withToken:(NSString *)token{
+    NSString *baseAPI = [NSString stringWithFormat:@"%@goods/%@?", APIDomain, itemID];
+    NSString *tokenStr = [NSString stringWithFormat:@"token=%@", token];
+    NSString *urlStr = [baseAPI stringByAppendingString:tokenStr];
+    return urlStr;
+}
+
 + (NSString *)getStringWithType:(CategoryType)type {
     switch (type) {
         case HotType:
