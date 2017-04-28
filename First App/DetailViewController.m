@@ -141,9 +141,12 @@ typedef NS_ENUM(NSInteger, TriggerState) {
                                action:@selector(touchSummaryControl:)
                      forControlEvents:UIControlEventTouchUpInside];
             if (summaryTriggerState == Close) {
-                [header.headerBtn setImage:[UIImage imageNamed:@"mask.png"] forState:UIControlStateNormal];
+//                [header.headerBtn setImage:[UIImage imageNamed:@"mask.png"] forState:UIControlStateNormal];
+                [header.headerBtn setSelected:NO];
+                
             } else {
-                [header.headerBtn setImage:[UIImage imageNamed:@"imgMoreArrowBlackSmall.jpg"] forState:UIControlStateNormal];
+//                [header.headerBtn setImage:[UIImage imageNamed:@"imgMoreArrowBlackSmall.jpg"] forState:UIControlStateNormal];
+                [header.headerBtn setSelected:YES];
             }
 
             return header;
@@ -340,6 +343,11 @@ typedef NS_ENUM(NSInteger, TriggerState) {
             // 获取cell高度
             CGFloat height = [self.tableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[RatingOptionTableViewCell class]  contentViewWidth:[self cellContentViewWith]];
             return height;
+        }
+            break;
+        case ExperienceQuestionArticle:
+        {
+            return 100;
         }
             break;
         default:

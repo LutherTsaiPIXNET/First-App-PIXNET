@@ -13,6 +13,7 @@
 
 @implementation ItemDetailHeaderView
 
+
 - (instancetype)init {
     if (self = [super init]) {
         self.backgroundColor = COLOR_SUPERLIGHT_GREY;
@@ -20,6 +21,7 @@
         UIButton *headerBtn = [UIButton new];
         [headerBtn setTitle:@"詳細介紹" forState:UIControlStateNormal];
         [headerBtn setImage:[UIImage imageNamed:@"mask.png"] forState:UIControlStateNormal];
+        [headerBtn setImage:[UIImage imageNamed:@"imgMoreArrowBlackSmall"] forState:UIControlStateSelected];
         [headerBtn setTitleColor:COLOR_BATTLESHIP_GREY forState:UIControlStateNormal];
         headerBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
         headerBtn.titleLabel.minimumScaleFactor = 0.2;
