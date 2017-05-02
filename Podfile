@@ -15,6 +15,7 @@ target 'First App' do
   pod 'HMSegmentedControl'
   pod 'HCSStarRatingView'
   pod 'SVProgressHUD'
+  pod 'SIAlertView'
 
   target 'First AppTests' do
       inherit! :search_paths

@@ -63,6 +63,7 @@ typedef NS_ENUM(NSInteger, TriggerState) {
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     [manager GET:url.absoluteString parameters:nil progress:nil success:^(NSURLSessionTask *task, id responseObject) {
         //NSLog(@"%@", responseObject);
+        _item = [Item yy_modelWithJSON:[responseObject objectForKey:@"content"]];
     } failure:^(NSURLSessionTask *operation, NSError *error) {
         NSLog(@"Error: %@", error);
     }];
@@ -141,11 +142,9 @@ typedef NS_ENUM(NSInteger, TriggerState) {
                                action:@selector(touchSummaryControl:)
                      forControlEvents:UIControlEventTouchUpInside];
             if (summaryTriggerState == Close) {
-//                [header.headerBtn setImage:[UIImage imageNamed:@"mask.png"] forState:UIControlStateNormal];
                 [header.headerBtn setSelected:NO];
                 
             } else {
-//                [header.headerBtn setImage:[UIImage imageNamed:@"imgMoreArrowBlackSmall.jpg"] forState:UIControlStateNormal];
                 [header.headerBtn setSelected:YES];
             }
 
@@ -257,14 +256,25 @@ typedef NS_ENUM(NSInteger, TriggerState) {
             switch (indexPath.row) {
                 case 0:
                 {
-                    RatingStarTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-                    if (!cell) {
-                        cell = [[RatingStarTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+                    if ([_item.ratingOverview floatValue] > 0) {
+                        RatingStarTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+                        if (!cell) {
+                            cell = [[RatingStarTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+                        }
+                        cell.model = object;
+                        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                        cell.optionTitle = @"綜合評分";
+                        return cell;
+                    } else {
+                        RatingOptionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+                        if (!cell) {
+                            cell = [[RatingOptionTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+                        }
+                        cell.model = object;
+                        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                        cell.optionTitle = @"綜合評分";
+                        return cell;
                     }
-                    cell.model = object;
-                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                    cell.optionTitle = @"綜合評分";
-                    return cell;
                 }
                     break;
                 case 1:
