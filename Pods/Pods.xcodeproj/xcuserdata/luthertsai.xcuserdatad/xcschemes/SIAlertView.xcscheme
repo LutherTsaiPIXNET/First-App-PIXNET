@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '3EF5204D47DBDB3189000C891871D1EB'
-               BlueprintName = 'Pods-First AppTests'
+               BlueprintIdentifier = 'AEC0640D0CA343223E207081A522BC92'
+               BlueprintName = 'SIAlertView'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'Pods-First AppTests.framework'>
+               BuildableName = 'SIAlertView.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
