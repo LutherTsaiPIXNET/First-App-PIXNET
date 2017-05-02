@@ -15,8 +15,8 @@
 #define MARGIN 18.0
 
 typedef NS_ENUM(NSInteger, IsCollectState) {
-    IsCollected,
-    NotCollected
+    NotCollected,
+    IsCollected
 };
 
 @implementation ItemDetailTableViewCell
@@ -68,9 +68,11 @@ typedef NS_ENUM(NSInteger, IsCollectState) {
         
         //商品[收藏]UI設定
         UIButton *isCollectedBtn = [UIButton new];
-        [isCollectedBtn setTitle:@"已收藏" forState:UIControlStateNormal];
-        [isCollectedBtn setImage:[UIImage imageNamed:@"btnLikeProduct.png"] forState:UIControlStateNormal];
         [isCollectedBtn setTitleColor:COLOR_MEDIUM_PINK forState:UIControlStateNormal];
+        [isCollectedBtn setTitle:@"收藏" forState:UIControlStateNormal];
+        [isCollectedBtn setTitle:@"已收藏" forState:UIControlStateSelected];
+        [isCollectedBtn setImage:[UIImage imageNamed:@"btnUnLikeProduct.png"] forState:UIControlStateNormal];
+        [isCollectedBtn setImage:[UIImage imageNamed:@"btnLikeProduct.png"] forState:UIControlStateSelected];
         isCollectedBtn.titleLabel.adjustsFontSizeToFitWidth = YES;
         isCollectedBtn.titleLabel.minimumScaleFactor = 0.2;
         [isCollectedBtn.titleLabel setFont:[UIFont systemFontOfSize:16]];
@@ -152,13 +154,11 @@ typedef NS_ENUM(NSInteger, IsCollectState) {
 
 - (void)touchCollectBtn: (UIButton*)sender {
     if(isCollectState != IsCollected) {
-        [_isCollectedBtn setTitle:@"已收藏" forState:UIControlStateNormal];
-        [_isCollectedBtn setImage:[UIImage imageNamed:@"btnLikeProduct.png"] forState:UIControlStateNormal];
+        [_isCollectedBtn setSelected:YES];
         isCollectState = IsCollected;
         collectedNumber++;
     } else {
-        [_isCollectedBtn setTitle:@"收藏" forState:UIControlStateNormal];
-        [_isCollectedBtn setImage:[UIImage imageNamed:@"btnUnLikeProduct.png"] forState:UIControlStateNormal];
+        [_isCollectedBtn setSelected:NO];
         isCollectState = NotCollected;
         collectedNumber--;
     }
@@ -170,9 +170,15 @@ typedef NS_ENUM(NSInteger, IsCollectState) {
     _model = model;
     _itemNameLbl.text = model.name;
     _brandNameLbl.text = model.brand;
+    collectedNumber = [model.collectors integerValue];
     _capPriceLbl.text = [NSString stringWithFormat:@"%@/%@", model.capacity, model.price];
     _isCollectedPersonLbl.text = [NSString stringWithFormat:@"%ld人", collectedNumber];
-    
+    isCollectState = [_model.isCollected integerValue];
+    if (isCollectState) {
+        [_isCollectedBtn setSelected:YES];
+    } else {
+        [_isCollectedBtn setSelected:NO];
+    }
     [_imgView sd_setImageWithURL:[NSURL URLWithString:model.thumb_url]];
     [_capPriceLbl updateLayout];
     

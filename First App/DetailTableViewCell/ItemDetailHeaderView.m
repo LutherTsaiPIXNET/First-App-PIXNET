@@ -19,7 +19,6 @@
         self.backgroundColor = COLOR_SUPERLIGHT_GREY;
         
         UIButton *headerBtn = [UIButton new];
-        [headerBtn setTitle:@"詳細介紹" forState:UIControlStateNormal];
         [headerBtn setImage:[UIImage imageNamed:@"mask.png"] forState:UIControlStateNormal];
         [headerBtn setImage:[UIImage imageNamed:@"imgMoreArrowBlackSmall"] forState:UIControlStateSelected];
         [headerBtn setTitleColor:COLOR_BATTLESHIP_GREY forState:UIControlStateNormal];
@@ -59,7 +58,7 @@
 
 - (void)setHeaderTitleText:(NSString *)headerTitleText {
     _headerTitleText = headerTitleText;
-    _headerBtn.titleLabel.text = _headerTitleText;
+    [_headerBtn setTitle:_headerTitleText forState:UIControlStateNormal];
 }
 
 @end

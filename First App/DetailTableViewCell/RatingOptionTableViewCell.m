@@ -44,6 +44,9 @@
         UIButton *optionInfo = [UIButton new];
         [optionInfo setImage:[UIImage imageNamed:@"info.png"] forState:UIControlStateNormal];
         optionInfo.imageView.contentMode = UIViewContentModeScaleAspectFit;
+        [optionInfo addTarget:self
+                             action:@selector(touchOptionInfo:)
+                   forControlEvents:UIControlEventTouchUpInside];
         _optionInfo = optionInfo;
 
         
@@ -83,9 +86,26 @@
         .centerXEqualToView(_optionBtn)
         .centerYEqualToView(_optionBtn);
         
+        [[SIAlertView appearance] setTitleColor:COLOR_ORANGEISH];
+        [[SIAlertView appearance] setTitleFont:[UIFont systemFontOfSize:13]];
+        [[SIAlertView appearance] setMessageFont:[UIFont systemFontOfSize:12]];
+        [[SIAlertView appearance] setButtonFont:[UIFont systemFontOfSize:13]];
+        [[SIAlertView appearance] setButtonColor:[UIColor blackColor]];
+        
         [self setupAutoHeightWithBottomView:_optionBtn bottomMargin:13];
     }
     return self;
+}
+
+- (void)touchOptionInfo:(UIButton *)sender {
+    SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:_optionTitle andMessage:@"所有有為此產品評分的人，所給的星等平均值"];
+    [alertView addButtonWithTitle:@"我瞭解了"
+                             type:SIAlertViewButtonTypeDefault
+                          handler:^(SIAlertView *alert) {
+                          }];
+    alertView.transitionStyle = SIAlertViewTransitionStyleBounce;
+    
+    [alertView show];
 }
 
 - (void)setModel:(Item *)model {

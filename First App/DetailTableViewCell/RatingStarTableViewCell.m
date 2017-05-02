@@ -30,6 +30,7 @@
         _optionTitleLbl = optionTitleLbl;
         
         HCSStarRatingView *starRatingView = [HCSStarRatingView new];
+        starRatingView.userInteractionEnabled = NO;
         starRatingView.allowsHalfStars = YES;
         starRatingView.accurateHalfStars = YES;
         starRatingView.maximumValue = 5;
@@ -39,7 +40,7 @@
         _starRatingView = starRatingView;
         
         UILabel *ratingValueLbl = [UILabel new];
-        ratingValueLbl.text = @"3.5";
+        ratingValueLbl.text = _model.ratingOverview;
         ratingValueLbl.numberOfLines = 1;
         ratingValueLbl.minimumScaleFactor = 0.2;
         ratingValueLbl.adjustsFontSizeToFitWidth = YES;
@@ -51,6 +52,10 @@
         UIButton *optionInfo = [UIButton new];
         [optionInfo setImage:[UIImage imageNamed:@"info.png"] forState:UIControlStateNormal];
         optionInfo.imageView.contentMode = UIViewContentModeScaleAspectFit;
+        [optionInfo addTarget:self
+                       action:@selector(touchOptionInfo:)
+             forControlEvents:UIControlEventTouchUpInside];
+        _optionInfo = optionInfo;
         _optionInfo = optionInfo;
 
         //Add to Content View
@@ -93,8 +98,24 @@
     return self;
 }
 
+- (void)touchOptionInfo:(UIButton *)sender {
+    SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:_optionTitle andMessage:@"所有有為此產品評分的人，所給的星等平均值"];
+    [alertView addButtonWithTitle:@"我瞭解了"
+                             type:SIAlertViewButtonTypeDefault
+                          handler:^(SIAlertView *alert) {
+                          }];
+    alertView.transitionStyle = SIAlertViewTransitionStyleBounce;
+    
+    [alertView show];
+}
+
+
 - (void)setModel:(Item *)model {
     _model = model;
+    _ratingValueLbl.text = _model.ratingOverview;
+    _starRatingView.value = [_model.ratingOverview floatValue];
+    [_starRatingView updateLayout];
+    [_ratingValueLbl updateLayout];
 }
 
 - (void)setOptionTitle:(NSString *)optionTitle {

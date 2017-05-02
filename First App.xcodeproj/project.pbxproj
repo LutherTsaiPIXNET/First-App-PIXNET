@@ -26,6 +26,7 @@
 		7159B2AC1EB1E1FD00BE67ED /* ItemDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7159B2AB1EB1E1FD00BE67ED /* ItemDetailTableViewCell.m */; };
 		71AAA7341EAEFBB20054933D /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 71AAA7331EAEFBB20054933D /* Item.m */; };
 		71D94F371EB1CF9E00FEA6B4 /* APIReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D94F361EB1CF9E00FEA6B4 /* APIReference.m */; };
+		71E278851EB82CDE002B38DD /* FullRatingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E278841EB82CDE002B38DD /* FullRatingTableViewCell.m */; };
 		A671C8DE7169B4A38D41F6AF /* Pods_First_AppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBC7CCCA44C7B94AE3E27598 /* Pods_First_AppUITests.framework */; };
 		BA5B32A07B9B7F593A15D1EE /* Pods_First_App_First_AppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C37D28D193272A41C7730F0B /* Pods_First_App_First_AppTests.framework */; };
 /* End PBXBuildFile section */
@@ -88,6 +89,8 @@
 		71D94F341EB1CF5400FEA6B4 /* Global.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Global.h; sourceTree = "<group>"; };
 		71D94F351EB1CF9E00FEA6B4 /* APIReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIReference.h; sourceTree = "<group>"; };
 		71D94F361EB1CF9E00FEA6B4 /* APIReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIReference.m; sourceTree = "<group>"; };
+		71E278831EB82CDE002B38DD /* FullRatingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FullRatingTableViewCell.h; path = DetailTableViewCell/FullRatingTableViewCell.h; sourceTree = "<group>"; };
+		71E278841EB82CDE002B38DD /* FullRatingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FullRatingTableViewCell.m; path = DetailTableViewCell/FullRatingTableViewCell.m; sourceTree = "<group>"; };
 		75E2F857D1E27EC036209804 /* Pods-First App-First AppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-First App-First AppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-First App-First AppTests/Pods-First App-First AppTests.release.xcconfig"; sourceTree = "<group>"; };
 		A27815480DD823DF681F9B29 /* Pods-First AppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-First AppUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-First AppUITests/Pods-First AppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		A499AA69822447A71ABE4CE1 /* Pods-First AppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-First AppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-First AppTests/Pods-First AppTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -241,6 +244,8 @@
 				713F21BA1EB2F54B0082E3A0 /* RatingOptionTableViewCell.m */,
 				713F21BC1EB3342A0082E3A0 /* RatingStarTableViewCell.h */,
 				713F21BD1EB3342A0082E3A0 /* RatingStarTableViewCell.m */,
+				71E278831EB82CDE002B38DD /* FullRatingTableViewCell.h */,
+				71E278841EB82CDE002B38DD /* FullRatingTableViewCell.m */,
 			);
 			name = DetailTableViewCell;
 			sourceTree = "<group>";
@@ -563,6 +568,7 @@
 				7159B2AC1EB1E1FD00BE67ED /* ItemDetailTableViewCell.m in Sources */,
 				710249401EADEABE00B872B8 /* ListViewController.m in Sources */,
 				7154106B1EAEDC9A001D95B1 /* ItemTableViewCell.m in Sources */,
+				71E278851EB82CDE002B38DD /* FullRatingTableViewCell.m in Sources */,
 				7102493D1EADEABE00B872B8 /* AppDelegate.m in Sources */,
 				713F21BE1EB3342A0082E3A0 /* RatingStarTableViewCell.m in Sources */,
 				713F21B21EB2CDD80082E3A0 /* ItemSummaryTableViewCell.m in Sources */,

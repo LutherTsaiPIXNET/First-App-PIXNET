@@ -12,6 +12,7 @@
 #import "ItemDetailHeaderView.h"
 #import "RatingOptionTableViewCell.h"
 #import "RatingStarTableViewCell.h"
+#import "FullRatingTableViewCell.h"
 #import "Global.h"
 #import "APIReference.h"
 
@@ -76,8 +77,13 @@ typedef NS_ENUM(NSInteger, TriggerState) {
             summaryTriggerState = !summaryTriggerState;
             [self.tableView reloadData];
         }
+        break;
+        case FullRating:
+        {
+            fullRatingTriggerState = !fullRatingTriggerState;
+            [self.tableView reloadData];
+        }
             break;
-            
         default:
         {
         }
@@ -134,6 +140,7 @@ typedef NS_ENUM(NSInteger, TriggerState) {
         case Summary:
         {
             ItemDetailHeaderView *header = [ItemDetailHeaderView new];
+            header.headerTitleText = @"詳細介紹";
             header.sd_layout
             .heightIs(30)
             .widthIs([self cellContentViewWith]);
@@ -163,9 +170,10 @@ typedef NS_ENUM(NSInteger, TriggerState) {
                                  action:@selector(touchSummaryControl:)
                        forControlEvents:UIControlEventTouchUpInside];
             if (fullRatingTriggerState == Close) {
-                [header.headerBtn setImage:[UIImage imageNamed:@"mask.png"] forState:UIControlStateNormal];
+                [header.headerBtn setSelected:NO];
+                
             } else {
-                [header.headerBtn setImage:[UIImage imageNamed:@"imgMoreArrowBlackSmall.jpg"] forState:UIControlStateNormal];
+                [header.headerBtn setSelected:YES];
             }
             
             return header;
@@ -174,7 +182,9 @@ typedef NS_ENUM(NSInteger, TriggerState) {
         case ExperienceQuestionArticle:
         {
             CGFloat viewWidth = CGRectGetWidth(self.view.frame);
-            HMSegmentedControl *segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"心得", @"發問"]];
+            NSString *segmentTitleExperience = [NSString stringWithFormat:@"%@\n心得", @"0"];
+            NSString *segmentTitleQuestion = [NSString stringWithFormat:@"%@\n發問", @"0"];
+            HMSegmentedControl *segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[segmentTitleExperience, segmentTitleQuestion]];
             segmentedControl.frame = CGRectMake(0, 0, viewWidth, 60);
             [segmentedControl addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
             return segmentedControl;
@@ -256,6 +266,7 @@ typedef NS_ENUM(NSInteger, TriggerState) {
             switch (indexPath.row) {
                 case 0:
                 {
+                    /* *** NORMAL LOGIC VERSION ***
                     if ([_item.ratingOverview floatValue] > 0) {
                         RatingStarTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
                         if (!cell) {
@@ -273,8 +284,20 @@ typedef NS_ENUM(NSInteger, TriggerState) {
                         cell.model = object;
                         cell.selectionStyle = UITableViewCellSelectionStyleNone;
                         cell.optionTitle = @"綜合評分";
+                        cell.optionBtnTitle = @"我要評分";
                         return cell;
                     }
+                     */
+                    
+                    //For DEMO
+                    RatingStarTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+                    if (!cell) {
+                        cell = [[RatingStarTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+                    }
+                    cell.model = object;
+                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                    cell.optionTitle = @"綜合評分";
+                    return cell;
                 }
                     break;
                 case 1:
@@ -311,6 +334,21 @@ typedef NS_ENUM(NSInteger, TriggerState) {
                 }
                     break;
             }
+        }
+            break;
+        case FullRating:
+        {
+            Item *object = _item;
+            NSString *ID = [NSString stringWithFormat:@"S%@", object.itemID];
+            FullRatingTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+            if (!cell) {
+                cell = [[FullRatingTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+            }
+            cell.model = object;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.contentView.backgroundColor = COLOR_SUPERLIGHT_GREY;
+            return cell;
+
         }
             break;
         default:
@@ -353,6 +391,15 @@ typedef NS_ENUM(NSInteger, TriggerState) {
             // 获取cell高度
             CGFloat height = [self.tableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[RatingOptionTableViewCell class]  contentViewWidth:[self cellContentViewWith]];
             return height;
+        }
+            break;
+        case FullRating:
+        {
+            id model = _item;
+            // 获取cell高度
+            CGFloat height = [self.tableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:[FullRatingTableViewCell class]  contentViewWidth:[self cellContentViewWith]];
+            return height;
+            
         }
             break;
         case ExperienceQuestionArticle:

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <SDAutoLayout/SDAutoLayout.h>
+#import <SIAlertView/SIAlertView.h>
 #import "Item.h"
 
 @interface RatingOptionTableViewCell : UITableViewCell
