@@ -26,6 +26,7 @@ typedef NS_ENUM(NSInteger, DetailType) {
     FullRating,
     EmptyView02,
     ExperienceQuestionArticle,
+    MoreArticle
 };
 
 typedef NS_ENUM(NSInteger, TriggerState) {
@@ -339,7 +340,7 @@ typedef NS_ENUM(NSInteger, TriggerState) {
         case FullRating:
         {
             Item *object = _item;
-            NSString *ID = [NSString stringWithFormat:@"S%@", object.itemID];
+            NSString *ID = [NSString stringWithFormat:@"FR%@", object.itemID];
             FullRatingTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
             if (!cell) {
                 cell = [[FullRatingTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
