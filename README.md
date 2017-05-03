@@ -21,4 +21,4 @@ DEMO利用Shadow提供的PIXNET API撈回所需呈現的資料。
 ##### FBSDKShareKit
 在商品資訊頁，加入Share Button，點按時會利用FBSDKShareKit呼叫iOS內建分享功能或Safari，並自動嵌入商品PIXstyleMe連結，使用者可以編輯分享內容後分享<br>
 <img src="img/分享資訊.png" height="160" width="90"><br>
-<img src="img/分享結果.png" height="160" width="90"><br>
+<img src="img/分享結果.png" height="90" width="160"><br>
