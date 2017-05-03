@@ -15,7 +15,7 @@ DEMO利用Shadow提供的PIXNET API撈回所需呈現的資料。
 
 ##### FBSDKLoginKit
 實作StyleMe App的登入畫面，並利用FBSDKLoginKit所提供的API，取得應用程式授權
-![Alt text](/img/登入畫面.png)
+<img src="/img/登入畫面.png)" height="200" width="auto">
 除了Facebook登入按鈕，其他功能只有實作元件，並沒有串接後台
 
 ##### FBSDKShareKit
