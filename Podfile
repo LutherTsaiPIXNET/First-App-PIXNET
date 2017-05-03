@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-platform :ios, '10.3'
+platform :ios, '9.0'
 
 target 'First App' do
   # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
@@ -16,6 +16,9 @@ target 'First App' do
   pod 'HCSStarRatingView'
   pod 'SVProgressHUD'
   pod 'SIAlertView'
+  pod 'FBSDKCoreKit'
+  pod 'FBSDKLoginKit'
+  pod 'FBSDKShareKit'
 
   target 'First AppTests' do
       inherit! :search_paths

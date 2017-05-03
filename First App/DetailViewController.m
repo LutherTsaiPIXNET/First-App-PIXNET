@@ -6,6 +6,7 @@
 //  Copyright © 2017年 luthertsai. All rights reserved.
 //
 
+#import <FBSDKShareKit/FBSDKShareKit.h>
 #import "DetailViewController.h"
 #import "ItemDetailTableViewCell.h"
 #import "ItemSummaryTableViewCell.h"
@@ -57,6 +58,18 @@ typedef NS_ENUM(NSInteger, TriggerState) {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+    
+- (IBAction)touchShareBtn:(UIBarButtonItem *)sender {
+    
+    NSURL *contentURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://styleme.pixnet.net/products/%@", _item.itemID]];
+    FBSDKShareLinkContent *content = [[FBSDKShareLinkContent alloc] init];
+    content.contentURL = contentURL;
+    [FBSDKShareDialog showFromViewController:self
+                                 withContent:content
+                                    delegate:nil];
+}
+
+#pragma mark - Handle Data Download
 
 - (void)downloadData {
     //Initilize API URL
@@ -70,6 +83,8 @@ typedef NS_ENUM(NSInteger, TriggerState) {
         NSLog(@"Error: %@", error);
     }];
 }
+
+#pragma mark - Header View touch selector
 
 - (void)touchSummaryControl: (UIButton *)sender {
     switch (sender.tag) {
@@ -91,6 +106,8 @@ typedef NS_ENUM(NSInteger, TriggerState) {
             break;
     }
 }
+
+#pragma mark - TableView Delegate & DataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 7;
@@ -186,6 +203,7 @@ typedef NS_ENUM(NSInteger, TriggerState) {
             NSString *segmentTitleExperience = [NSString stringWithFormat:@"%@\n心得", @"0"];
             NSString *segmentTitleQuestion = [NSString stringWithFormat:@"%@\n發問", @"0"];
             HMSegmentedControl *segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[segmentTitleExperience, segmentTitleQuestion]];
+            segmentedControl.selectionIndicatorColor = [UIColor blackColor];
             segmentedControl.frame = CGRectMake(0, 0, viewWidth, 60);
             [segmentedControl addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
             return segmentedControl;
@@ -291,6 +309,7 @@ typedef NS_ENUM(NSInteger, TriggerState) {
                      */
                     
                     //For DEMO
+                    _item.ratingOverview = @"3.5";
                     RatingStarTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
                     if (!cell) {
                         cell = [[RatingStarTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
@@ -426,6 +445,8 @@ typedef NS_ENUM(NSInteger, TriggerState) {
     return width;
 }
 
+#pragma mark - Segment Control Selector
+
 - (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl {
     NSLog(@"Selected index %ld (via UIControlEventValueChanged)", (long)segmentedControl.selectedSegmentIndex);
     
@@ -434,6 +455,8 @@ typedef NS_ENUM(NSInteger, TriggerState) {
 - (void)uisegmentedControlChangedValue:(UISegmentedControl *)segmentedControl {
     //NSLog(@"Selected index %ld", (long)segmentedControl.selectedSegmentIndex);
 }
+
+#pragma mark - Setter for model
 
 - (void)setItem:(Item *)item {
     _item = item;

@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -14,7 +13,7 @@
             <objects>
                 <navigationController id="vcT-xk-6S6" sceneMemberID="viewController">
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="c1J-Yc-AfP">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="c1J-Yc-AfP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -29,7 +28,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wNR-0c-4Kb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1481" y="-296"/>
+            <point key="canvasLocation" x="-1415" y="-296"/>
         </scene>
         <!--StyleMe-->
         <scene sceneID="CLU-yd-RLo">
@@ -74,7 +73,13 @@
                             <constraint firstItem="INA-xl-tJs" firstAttribute="leading" secondItem="33X-DA-S82" secondAttribute="leading" id="zUA-KS-ozi"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="StyleMe" id="0eE-mm-dFn"/>
+                    <navigationItem key="navigationItem" title="StyleMe" id="0eE-mm-dFn">
+                        <barButtonItem key="rightBarButtonItem" title="登入" id="ugs-dP-ZhW">
+                            <connections>
+                                <segue destination="ch1-iB-oFd" kind="show" id="15B-50-cvS"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="tabBarView" destination="QHJ-33-iYm" id="I5T-NU-ixT"/>
@@ -86,6 +91,26 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ER4-fl-9xi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-650.39999999999998" y="-296.40179910044981"/>
+        </scene>
+        <!--登入-->
+        <scene sceneID="OJR-mV-m0a">
+            <objects>
+                <viewController id="ch1-iB-oFd" customClass="LoginViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="sB9-GH-g5Z"/>
+                        <viewControllerLayoutGuide type="bottom" id="dhX-NF-ecN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Lgi-nO-f77">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.9944118857383728" green="0.28421938419342041" blue="0.61996585130691528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="登入" id="Rr2-6A-R9G"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mPd-KF-8Sb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="94" y="-956"/>
         </scene>
         <!--商品資訊-->
         <scene sceneID="rRR-cv-rDB">
@@ -100,7 +125,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rDv-fa-8ir" id="JMM-bZ-w4K">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -110,12 +135,21 @@
                             <outlet property="delegate" destination="Ebu-AR-6f3" id="sRe-VC-Tr4"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="商品資訊" id="qx8-Sy-yKR"/>
+                    <navigationItem key="navigationItem" title="商品資訊" id="qx8-Sy-yKR">
+                        <barButtonItem key="rightBarButtonItem" title="Share" id="HDu-Qt-2C3">
+                            <connections>
+                                <action selector="touchShareBtn:" destination="Ebu-AR-6f3" id="Uk2-u0-eGi"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <connections>
+                        <outlet property="shareBtn" destination="HDu-Qt-2C3" id="D6w-KO-qSV"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ifr-oG-JWz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="95" y="-296"/>
+            <point key="canvasLocation" x="94" y="-296"/>
         </scene>
     </scenes>
 </document>

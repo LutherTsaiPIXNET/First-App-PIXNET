@@ -9,6 +9,26 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Bolts.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>FBSDKCoreKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>FBSDKLoginKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>FBSDKShareKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>HCSStarRatingView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -72,7 +92,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>10E1D8044F3003807AEDC61F988D0BBA</key>
+		<key>093EE53C15078815F266FA1EF9E1426A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>20071A61A6E893E3088DD4C728D1608B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -82,7 +107,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>44CAD6CE523055ED339E87154473A254</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>45FF4A7AFE5D8E17D01023C53AED87FF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>46F7F4D864584A8355D5262547327AF4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -92,27 +127,32 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9C1EFB2C44AFA7CE378C307F460A10AF</key>
+		<key>7C19BA609DA287065E130AC575BF2BD6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>ADDFB9B43D0D7D1EC15250545B41B22B</key>
+		<key>B2D2F9A5EAA49634B3F4F91AF9CF1183</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AE55F520C64FA25DE9DEF011F626A09F</key>
+		<key>B82AC7C194C18A3B5E41812B831BAB86</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AEC0640D0CA343223E207081A522BC92</key>
+		<key>BC5000D645EEAF961C85907CDC796FE1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B94530E929D6E421DA57585C06609197</key>
+		<key>BEF7E6E85DB5CDE5D7A18F4F2EB8494B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C0B87C9A53BCEFAE0C7A7F9F54E2CD3E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -132,7 +172,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E8B4FB2A580A8B79DC2D5D2F05C5FFF6</key>
+		<key>E396A93E4C79B22B7816E9F02F62ECED</key>
 		<dict>
 			<key>primary</key>
 			<true/>

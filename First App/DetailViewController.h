@@ -21,4 +21,6 @@
 
 @property (nonatomic, copy) Item *item;
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *shareBtn;
+
 @end

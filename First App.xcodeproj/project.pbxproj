@@ -17,6 +17,7 @@
 		710249481EADEABF00B872B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 710249461EADEABF00B872B8 /* LaunchScreen.storyboard */; };
 		710249531EADEABF00B872B8 /* First_AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 710249521EADEABF00B872B8 /* First_AppTests.m */; };
 		7102495E1EADEABF00B872B8 /* First_AppUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7102495D1EADEABF00B872B8 /* First_AppUITests.m */; };
+		713B91031EB96A7C00BE14BB /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 713B91021EB96A7C00BE14BB /* LoginViewController.m */; };
 		713F21B21EB2CDD80082E3A0 /* ItemSummaryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 713F21B11EB2CDD80082E3A0 /* ItemSummaryTableViewCell.m */; };
 		713F21B81EB2D7790082E3A0 /* ItemDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 713F21B71EB2D7790082E3A0 /* ItemDetailHeaderView.m */; };
 		713F21BB1EB2F54B0082E3A0 /* RatingOptionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 713F21BA1EB2F54B0082E3A0 /* RatingOptionTableViewCell.m */; };
@@ -69,6 +70,8 @@
 		710249591EADEABF00B872B8 /* First AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "First AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7102495D1EADEABF00B872B8 /* First_AppUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = First_AppUITests.m; sourceTree = "<group>"; };
 		7102495F1EADEABF00B872B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		713B91011EB96A7C00BE14BB /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = LoginViewController/LoginViewController.h; sourceTree = "<group>"; };
+		713B91021EB96A7C00BE14BB /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = LoginViewController/LoginViewController.m; sourceTree = "<group>"; };
 		713F21B01EB2CDD80082E3A0 /* ItemSummaryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemSummaryTableViewCell.h; path = DetailTableViewCell/ItemSummaryTableViewCell.h; sourceTree = "<group>"; };
 		713F21B11EB2CDD80082E3A0 /* ItemSummaryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemSummaryTableViewCell.m; path = DetailTableViewCell/ItemSummaryTableViewCell.m; sourceTree = "<group>"; };
 		713F21B61EB2D7790082E3A0 /* ItemDetailHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemDetailHeaderView.h; path = DetailTableViewCell/ItemDetailHeaderView.h; sourceTree = "<group>"; };
@@ -167,6 +170,7 @@
 		710249371EADEABE00B872B8 /* First App */ = {
 			isa = PBXGroup;
 			children = (
+				713B91001EB96A3700BE14BB /* LoginViewController */,
 				7159B2A91EB1E19B00BE67ED /* DetailTableViewCell */,
 				7159B2A51EB1D99B00BE67ED /* DetailViewController */,
 				7159B2A41EB1D86400BE67ED /* ListViewController */,
@@ -210,6 +214,15 @@
 				7102495F1EADEABF00B872B8 /* Info.plist */,
 			);
 			path = "First AppUITests";
+			sourceTree = "<group>";
+		};
+		713B91001EB96A3700BE14BB /* LoginViewController */ = {
+			isa = PBXGroup;
+			children = (
+				713B91011EB96A7C00BE14BB /* LoginViewController.h */,
+				713B91021EB96A7C00BE14BB /* LoginViewController.m */,
+			);
+			name = LoginViewController;
 			sourceTree = "<group>";
 		};
 		7159B2A41EB1D86400BE67ED /* ListViewController */ = {
@@ -359,7 +372,8 @@
 				TargetAttributes = {
 					710249341EADEABE00B872B8 = {
 						CreatedOnToolsVersion = 8.3.2;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = 6WCFCSF7YH;
+						ProvisioningStyle = Manual;
 					};
 					7102494D1EADEABF00B872B8 = {
 						CreatedOnToolsVersion = 8.3.2;
@@ -567,6 +581,7 @@
 				713F21B81EB2D7790082E3A0 /* ItemDetailHeaderView.m in Sources */,
 				7159B2AC1EB1E1FD00BE67ED /* ItemDetailTableViewCell.m in Sources */,
 				710249401EADEABE00B872B8 /* ListViewController.m in Sources */,
+				713B91031EB96A7C00BE14BB /* LoginViewController.m in Sources */,
 				7154106B1EAEDC9A001D95B1 /* ItemTableViewCell.m in Sources */,
 				71E278851EB82CDE002B38DD /* FullRatingTableViewCell.m in Sources */,
 				7102493D1EADEABE00B872B8 /* AppDelegate.m in Sources */,
@@ -725,10 +740,16 @@
 			baseConfigurationReference = C9497D1CC73FA9E6162C3180 /* Pods-First App.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: PIXNET Digital Media Corp.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = 6WCFCSF7YH;
 				INFOPLIST_FILE = "First App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pixnet.First-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = inHouse;
 			};
 			name = Debug;
 		};
@@ -737,10 +758,16 @@
 			baseConfigurationReference = 438D37B11923EAEC24BF9B27 /* Pods-First App.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: PIXNET Digital Media Corp.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = 6WCFCSF7YH;
 				INFOPLIST_FILE = "First App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pixnet.First-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = inHouse;
 			};
 			name = Release;
 		};
