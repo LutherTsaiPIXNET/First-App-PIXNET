@@ -284,6 +284,7 @@
              } else {
                  NSLog(@"Logged in");
                  [_fbLoginButton setTitle: @"從Facebook登出" forState: UIControlStateNormal];
+                 [[self navigationController] popViewControllerAnimated:YES];
              }
          }];
 }

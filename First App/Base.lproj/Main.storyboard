@@ -82,6 +82,7 @@
                     </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
+                        <outlet property="loginBtn" destination="ugs-dP-ZhW" id="m8X-YE-d3x"/>
                         <outlet property="tabBarView" destination="QHJ-33-iYm" id="I5T-NU-ixT"/>
                         <outlet property="tableView01" destination="yu6-9k-9N2" id="M8a-bX-Bgf"/>
                         <outlet property="tableView02" destination="INA-xl-tJs" id="5Ev-kP-t1s"/>

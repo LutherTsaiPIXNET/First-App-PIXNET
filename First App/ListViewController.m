@@ -6,6 +6,7 @@
 //  Copyright © 2017年 luthertsai. All rights reserved.
 //
 
+
 #import "ListViewController.h"
 #import "ItemTableViewCell.h"
 #import "Item.h"
@@ -16,6 +17,8 @@
 #import "DetailViewController.h"
 
 @interface ListViewController ()
+    
+@property (retain, nonatomic) IBOutlet UIBarButtonItem *loginBtn;
 
 @property (nonatomic, assign) CategoryType categoryType;
 
@@ -32,6 +35,16 @@
     NSInteger _currentPageHot;
     NSInteger _currentPageLatest;
     Item *_selectedItem;
+}
+
+    
+- (void)viewWillAppear:(BOOL)animated {
+    //Check Facebook Login Status
+    if ([FBSDKAccessToken currentAccessToken]) {
+        self.navigationItem.rightBarButtonItem = nil;
+    } else {
+        self.navigationItem.rightBarButtonItem = _loginBtn;
+    }
 }
 
 - (void)viewDidLoad {
