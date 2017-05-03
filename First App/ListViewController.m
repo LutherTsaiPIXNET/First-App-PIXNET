@@ -41,7 +41,11 @@
 - (void)viewWillAppear:(BOOL)animated {
     //Check Facebook Login Status
     if ([FBSDKAccessToken currentAccessToken]) {
-        self.navigationItem.rightBarButtonItem = nil;
+        UIBarButtonItem *logoutBtn = [UIBarButtonItem new];
+        logoutBtn.title = @"登出";
+        logoutBtn.target = self;
+        logoutBtn.action = @selector( logoutAction: );
+        self.navigationItem.rightBarButtonItem = logoutBtn;
     } else {
         self.navigationItem.rightBarButtonItem = _loginBtn;
     }
@@ -89,6 +93,13 @@
     // Dispose of any resources that can be recreated.
 }
 
+- ( IBAction )logoutAction: ( id )sender {
+    FBSDKLoginManager *loginManager = [[FBSDKLoginManager alloc] init];
+    [loginManager logOut];
+    [FBSDKAccessToken setCurrentAccessToken:nil];
+    self.navigationItem.rightBarButtonItem = _loginBtn;
+}
+    
 /**
  Add Segment Controller with HMSegmentedControll
  */
