@@ -27,6 +27,7 @@
 		7159B2AC1EB1E1FD00BE67ED /* ItemDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7159B2AB1EB1E1FD00BE67ED /* ItemDetailTableViewCell.m */; };
 		71AAA7341EAEFBB20054933D /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 71AAA7331EAEFBB20054933D /* Item.m */; };
 		71D94F371EB1CF9E00FEA6B4 /* APIReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 71D94F361EB1CF9E00FEA6B4 /* APIReference.m */; };
+		71DE4B941EBB175900A3C123 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 71DE4B931EBB175900A3C123 /* GoogleService-Info.plist */; };
 		71E278851EB82CDE002B38DD /* FullRatingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 71E278841EB82CDE002B38DD /* FullRatingTableViewCell.m */; };
 		A671C8DE7169B4A38D41F6AF /* Pods_First_AppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBC7CCCA44C7B94AE3E27598 /* Pods_First_AppUITests.framework */; };
 		BA5B32A07B9B7F593A15D1EE /* Pods_First_App_First_AppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C37D28D193272A41C7730F0B /* Pods_First_App_First_AppTests.framework */; };
@@ -92,6 +93,8 @@
 		71D94F341EB1CF5400FEA6B4 /* Global.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Global.h; sourceTree = "<group>"; };
 		71D94F351EB1CF9E00FEA6B4 /* APIReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIReference.h; sourceTree = "<group>"; };
 		71D94F361EB1CF9E00FEA6B4 /* APIReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIReference.m; sourceTree = "<group>"; };
+		71DE4B921EBB123400A3C123 /* First App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "First App.entitlements"; sourceTree = "<group>"; };
+		71DE4B931EBB175900A3C123 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		71E278831EB82CDE002B38DD /* FullRatingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FullRatingTableViewCell.h; path = DetailTableViewCell/FullRatingTableViewCell.h; sourceTree = "<group>"; };
 		71E278841EB82CDE002B38DD /* FullRatingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FullRatingTableViewCell.m; path = DetailTableViewCell/FullRatingTableViewCell.m; sourceTree = "<group>"; };
 		75E2F857D1E27EC036209804 /* Pods-First App-First AppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-First App-First AppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-First App-First AppTests/Pods-First App-First AppTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -170,6 +173,7 @@
 		710249371EADEABE00B872B8 /* First App */ = {
 			isa = PBXGroup;
 			children = (
+				71DE4B921EBB123400A3C123 /* First App.entitlements */,
 				713B91001EB96A3700BE14BB /* LoginViewController */,
 				7159B2A91EB1E19B00BE67ED /* DetailTableViewCell */,
 				7159B2A51EB1D99B00BE67ED /* DetailViewController */,
@@ -182,6 +186,7 @@
 				710249441EADEABF00B872B8 /* Assets.xcassets */,
 				710249461EADEABF00B872B8 /* LaunchScreen.storyboard */,
 				710249491EADEABF00B872B8 /* Info.plist */,
+				71DE4B931EBB175900A3C123 /* GoogleService-Info.plist */,
 				710249381EADEABE00B872B8 /* Supporting Files */,
 			);
 			path = "First App";
@@ -372,8 +377,16 @@
 				TargetAttributes = {
 					710249341EADEABE00B872B8 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = 6WCFCSF7YH;
-						ProvisioningStyle = Manual;
+						DevelopmentTeam = UPTAX3JJ4R;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					7102494D1EADEABF00B872B8 = {
 						CreatedOnToolsVersion = 8.3.2;
@@ -413,6 +426,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				710249481EADEABF00B872B8 /* LaunchScreen.storyboard in Resources */,
+				71DE4B941EBB175900A3C123 /* GoogleService-Info.plist in Resources */,
 				710249451EADEABF00B872B8 /* Assets.xcassets in Resources */,
 				710249431EADEABF00B872B8 /* Main.storyboard in Resources */,
 			);
@@ -740,16 +754,17 @@
 			baseConfigurationReference = C9497D1CC73FA9E6162C3180 /* Pods-First App.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "First App/First App.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: PIXNET Digital Media Corp.";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = 6WCFCSF7YH;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = UPTAX3JJ4R;
 				INFOPLIST_FILE = "First App/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.pixnet.First-App";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pixnet.FirstAppLuther;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = inHouse;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -758,16 +773,17 @@
 			baseConfigurationReference = 438D37B11923EAEC24BF9B27 /* Pods-First App.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "First App/First App.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: PIXNET Digital Media Corp.";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = 6WCFCSF7YH;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = UPTAX3JJ4R;
 				INFOPLIST_FILE = "First App/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.pixnet.First-App";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pixnet.FirstAppLuther;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = inHouse;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};

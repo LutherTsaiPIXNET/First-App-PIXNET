@@ -19,6 +19,10 @@ target 'First App' do
   pod 'FBSDKCoreKit'
   pod 'FBSDKLoginKit'
   pod 'FBSDKShareKit'
+  pod 'OneSignal', '>= 2.5.2', '< 3.0'
+  pod 'Firebase'
+  pod 'Firebase/Core'
+  pod 'Firebase/Messaging'
 
   target 'First AppTests' do
       inherit! :search_paths
