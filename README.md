@@ -40,6 +40,8 @@ DONE!! <br>
 You can send message from OpenSignal<br>
 #### Firebase
 首先註冊一個新的Project，Follow the guide online<br>
-參考<a href="https://github.com/firebase/quickstart-ios/blob/master/messaging/MessagingExample/AppDelegate.m">這裡</a>設定AppDelegate<br>
+參考<a href="https://github.com/firebase/quickstart-ios/blob/master/messaging/MessagingExample/AppDelegate.m" target="_blank">這裡</a>設定AppDelegate<br>
 DONE!! <br>
-You can send message from OpenSignal<br>
+You can send message from Firebase<br>
+Firebase功能很多，設定也比較繁雜，以推播通知來說，OpenSignal應該會是比較好的選項
+當然如果要整合分析等等的功能，Firebase就可以多加考慮！！
