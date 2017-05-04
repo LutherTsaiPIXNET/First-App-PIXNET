@@ -33,8 +33,8 @@ List畫面上的『登入』，也會隨之改變為『登出』<br>
 加入OpenSignal-iOS-SDK到Project<br>
 Register a new app on OpenSignal, and set AppDelegate with following code:
 <pre><code>[OneSignal initWithLaunchOptions:launchOptions
-                               appId:@"06201d6e-4783-4a34-9458-b50b83f5c016"];
-    OneSignal.inFocusDisplayType = OSNotificationDisplayTypeNotification;
+                               appId:@"*******APP_KEY_HERE*******"];
+OneSignal.inFocusDisplayType = OSNotificationDisplayTypeNotification;
 </code></pre><br>
 DONE!! <br>
 You can send message from OpenSignal<br>
