@@ -31,7 +31,7 @@
     UIView *_seperateLine02;
     UIView *_seperateLine03;
     UIView *_textFieldFrame;
-    UITextField *_userIDInput;
+    JVFloatLabeledTextView *_userIDInput;
     UITextField *_userPasswordInput;
 }
     
@@ -145,15 +145,17 @@
     lineView03.backgroundColor = [UIColor whiteColor];
     _seperateLine03 = lineView03;
     
-    UITextField *userIDInput = [UITextField new];
-    NSAttributedString *userIDInputPlaceholder = [[NSAttributedString alloc] initWithString:@"使用者名稱/信箱" attributes:@{ NSForegroundColorAttributeName : [UIColor whiteColor] }];
-    userIDInput.attributedPlaceholder = userIDInputPlaceholder;
+    JVFloatLabeledTextView *userIDInput = [JVFloatLabeledTextView new];
+    //NSAttributedString *userIDInputPlaceholder = [[NSAttributedString alloc] initWithString:@"使用者名稱/信箱" attributes:@{ NSForegroundColorAttributeName : [UIColor whiteColor] }];
+    //userIDInput.attributedPlaceholder = userIDInputPlaceholder;
+    userIDInput.placeholder = @"使用者名稱/信箱";
     userIDInput.keyboardType = UIKeyboardTypeASCIICapable;
     userIDInput.autocorrectionType = UITextAutocorrectionTypeNo;
     userIDInput.contentScaleFactor = 0.2;
-    userIDInput.adjustsFontSizeToFitWidth = YES;
+    //userIDInput.adjustsFontSizeToFitWidth = YES;
     [userIDInput setFont:[UIFont systemFontOfSize:16]];
     userIDInput.textColor = [UIColor whiteColor];
+    userIDInput.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
     _userIDInput = userIDInput;
     _userIDInput.delegate = self;
 
@@ -242,9 +244,9 @@
     
     _userIDInput.sd_layout
     .widthRatioToView(_textFieldFrame, 0.89)
-    .heightIs(50)
+    .heightIs(40)
     .leftEqualToView(_seperateLine03)
-    .topSpaceToView(_seperateLabel, 19);
+    .bottomSpaceToView(_seperateLine03, 5);
     
     _userPasswordInput.sd_layout
     .widthRatioToView(_textFieldFrame, 0.89)

@@ -44,6 +44,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>JVFloatLabeledTextField.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>MJRefresh.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -102,12 +107,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>26657E6DE4DAA5C9910F80A48DA93094</key>
+		<key>07E74B194E9BF0C631930D904F703723</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>27A37AA917EF23EC8A0DEE060A083893</key>
+		<key>1DDB1F83A7B7C9069D6A4DB5FAD3DD36</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2961A884B48AE86A89DB0527B2ABB708</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2A4448146C785C426971111F117D773C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2BB3AE9009EC2F3272BE43F50BE145B3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -122,12 +142,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4527B1B3F8E9000C440E41ED0FBBCF85</key>
+		<key>45FF4A7AFE5D8E17D01023C53AED87FF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>45FF4A7AFE5D8E17D01023C53AED87FF</key>
+		<key>48CAF7FA2CF3BE836ED8DBB308E8C8BE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>555E4AC30E942D49AC72CBBBA57E8148</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -137,7 +162,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B0F3AEA0C5462ED55FBF72F56C02815F</key>
+		<key>869129AF64A207B159718B0C1D919E09</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A9D581E2F832C12A0B8169FA5301DF75</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -157,16 +187,6 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CE19D17ADCFF64679689FD11AD01F3B3</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>CE66FBA53C71F40C7CE4B7063C45C2BA</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>CF671F7E57B92905F1CC91D036D6B4A7</key>
 		<dict>
 			<key>primary</key>
@@ -182,17 +202,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E353063BD660B2E78756B592DBCE3AAF</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>E396A93E4C79B22B7816E9F02F62ECED</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>FCB2D9A8B387CB284B05D6C62755CF54</key>
 		<dict>
 			<key>primary</key>
 			<true/>

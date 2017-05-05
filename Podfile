@@ -23,6 +23,8 @@ target 'First App' do
   pod 'Firebase'
   pod 'Firebase/Core'
   pod 'Firebase/Messaging'
+  pod 'JVFloatLabeledTextField'
+  pod 'ChameleonFramework'
 
   target 'First AppTests' do
       inherit! :search_paths

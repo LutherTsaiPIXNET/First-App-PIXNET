@@ -54,6 +54,7 @@ PODS:
     - GoogleToolboxForMac/Defines (= 2.1.1)
   - HCSStarRatingView (1.5)
   - HMSegmentedControl (1.5.3)
+  - JVFloatLabeledTextField (1.1.1)
   - MJRefresh (3.1.12)
   - OneSignal (2.5.2)
   - Protobuf (3.3.0)
@@ -76,6 +77,7 @@ DEPENDENCIES:
   - Firebase/Messaging
   - HCSStarRatingView
   - HMSegmentedControl
+  - JVFloatLabeledTextField
   - MJRefresh
   - OneSignal (< 3.0, >= 2.5.2)
   - ReactiveObjC
@@ -99,6 +101,7 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   HCSStarRatingView: 1d18f79654735514cd6f00e6d90e38cb6320dc31
   HMSegmentedControl: 7c6145afb50f26cec5f3243082f6f12b9f41318f
+  JVFloatLabeledTextField: 0e5524b097f102036214dd8279edc8ecf08b5e18
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   OneSignal: 66d08b6b1e3c3858cbf28207ed20f1fa865ab2a2
   Protobuf: d582fecf68201eac3d79ed61369ef45734394b9c
@@ -109,6 +112,6 @@ SPEC CHECKSUMS:
   SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: b348875ff19de8dbf89a9410f7cc42c00ee28c67
+PODFILE CHECKSUM: 9b5e74cd1fcb087df8826b6d3be141e616f8ace5
 
 COCOAPODS: 1.2.1

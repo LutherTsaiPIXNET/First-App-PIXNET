@@ -10,6 +10,7 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <SDAutoLayout/SDAutoLayout.h>
+#import "JVFloatLabeledTextView.h"
 
 @interface LoginViewController : UIViewController
 
