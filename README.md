@@ -46,7 +46,8 @@ OpenSignal is a free Push Notification Services Provider. It can push notificati
 OneSignal.inFocusDisplayType = OSNotificationDisplayTypeNotification;
 </code></pre><br>
 設定完成!! 可以開始傳送Notification囉 =D<br>
-You can send message from OpenSignal<br>
+<img src="img/Screenshoot_OpenSignal_Notification.jpg" height="320" width="180"><br><br>
+
 #### Firebase
 Firebase is the library provided by Google. It can track the usage of the app, and do the analysis. It's not only providing the notification services, but also lots of Google Services, such as AdMobs and etc.
 Here we only do the notification services...
@@ -55,6 +56,6 @@ Here we only do the notification services...
 - Download the Google Setting .plist file, and add it to the project<br>
 - 參考<a href="https://github.com/firebase/quickstart-ios/blob/master/messaging/MessagingExample/AppDelegate.m" target="_blank">這裡</a>設定AppDelegate(設定比較複雜，所以不貼Code在這裡)<br>
 設定完成!! 可以開始傳送Notification囉 =D<br>
-
+<img src="img/Screenshoot_Firebase_Notification.jpg" height="320" width="180"><br>
 Firebase功能很多，但是設定也比較繁雜，以推播通知來說，OpenSignal應該會是比較好的選項
 當然如果要整合分析等等的功能，Firebase就可以多加考慮！！
